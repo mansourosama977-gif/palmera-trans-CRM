@@ -1,0 +1,2974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Palmera Trans CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Fallback fonts in case Google Fonts fails to load */
+  :root {
+    --font-display: 'Syne', 'Arial Black', 'Impact', sans-serif;
+    --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'DM Mono', 'Courier New', monospace;
+  }
+</style>
+<style>
+  :root {
+    --bg: #0f1035;
+    --surface: #181a45;
+    --card: #1e2050;
+    --border: rgba(180,160,255,0.25);
+    --border-med: rgba(180,160,255,0.4);
+    --accent: #0d0f30;
+    --accent2: #7c3aed;
+    --text: #ffffff;
+    --muted: #d4d8f8;
+    --muted2: #9098cc;
+    --green-bg: rgba(52,211,153,0.2);
+    --green-text: #86efca;
+    --red-bg: rgba(248,113,113,0.2);
+    --red-text: #fca5a5;
+    --amber-bg: rgba(251,191,36,0.2);
+    --amber-text: #fde68a;
+    --blue-bg: rgba(147,197,253,0.2);
+    --blue-text: #bfdbfe;
+    --purple-bg: rgba(216,201,255,0.18);
+    --purple-text: #e9e0ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0f1035;
+    color: #ffffff;
+    font-family: var(--font-body, 'Manrope', -apple-system, sans-serif);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ── SPACE BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 55% at 15% 10%, rgba(110,60,255,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 45% at 85% 85%, rgba(40,100,220,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 55% 35%, rgba(150,60,230,0.2) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 30% at 50% 100%, rgba(80,40,200,0.25) 0%, transparent 50%),
+      #0f1035;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 8% 12%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 18% 68%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 32% 8%, rgba(200,180,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 44% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 56% 78%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 67% 22%, rgba(180,200,255,0.9) 0%, transparent 100%),
+      radial-gradient(2px 2px at 74% 88%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 83% 44%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 91% 14%, rgba(200,180,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 12% 38%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 23% 84%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 38% 45%, rgba(180,200,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 49% 20%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 62% 62%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 77% 5%, rgba(200,180,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 72%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 3% 90%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 30%, rgba(180,200,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 28% 25%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 52% 92%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 71% 48%, rgba(200,180,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 16% 52%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 58%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 41% 76%, rgba(180,200,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 97% 85%, rgba(255,255,255,0.6) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .layout { position: relative; z-index: 1; }
+
+  /* ── SIDEBAR LAYOUT ── */
+  .layout { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 220px;
+    background: linear-gradient(180deg, #0d0f30 0%, #121440 100%);
+    border-right: 1px solid rgba(180,160,255,0.28);
+    padding: 28px 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 10;
+  }
+
+  .logo {
+    padding: 0 24px 28px;
+    border-bottom: 1px solid rgba(99,179,255,0.12);
+    margin-bottom: 16px;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+    box-shadow: 0 0 20px rgba(124,58,237,0.6);
+  }
+  .logo-icon svg { width: 20px; height: 20px; fill: #fff; }
+  .logo-name {
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.2px;
+  }
+  .logo-sub { font-size: 10px; color: rgba(220,210,255,0.8); margin-top: 2px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+    margin-bottom: 2px;
+  }
+  .nav-item:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.06); }
+  .nav-item.active { color: #fff; background: rgba(140,100,255,0.28); border-left-color: #c4b5fd; text-shadow: 0 0 14px rgba(196,181,253,0.9); }
+  .nav-item { color: rgba(220,210,255,0.7); }
+  .nav-item:hover { color: #ffffff; background: rgba(140,100,255,0.18); }
+  .nav-item .ni { font-size: 16px; }
+  .nav-label { font-size: 9px; color: rgba(210,195,255,0.55); text-transform: uppercase; letter-spacing: 2.5px; padding: 16px 24px 6px; }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 16px 24px;
+    font-size: 11px;
+    color: rgba(220,210,255,0.6);
+    border-top: 1px solid rgba(160,130,255,0.15);
+  }
+  .trucks-indicator {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .truck-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #7c3aed;
+    opacity: 0.6;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: 220px;
+    flex: 1;
+    padding: 32px;
+    min-height: 100vh;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .page-title {
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 20px rgba(196,181,253,0.4);
+  }
+  .page-sub { font-size: 13px; color: rgba(220,210,255,0.8); margin-top: 3px; }
+
+  .add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-body, 'Manrope', -apple-system, sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 0 20px rgba(124,58,237,0.45);
+    letter-spacing: 0.3px;
+  }
+  .add-btn:hover { box-shadow: 0 0 30px rgba(124,58,237,0.7); transform: translateY(-1px); }
+
+  /* ── METRICS ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .metric {
+    background: rgba(24,26,69,0.92);
+    border: 1px solid rgba(180,160,255,0.28);
+    border-radius: 14px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+  }
+  .metric::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(196,181,253,1), transparent);
+  }
+  .metric-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  .mi-green { background: var(--green-bg); }
+  .mi-red { background: var(--red-bg); }
+  .mi-blue { background: var(--blue-bg); }
+  .mi-amber { background: var(--amber-bg); }
+  .metric-label { font-size: 12px; color: rgba(196,181,253,0.7); margin-bottom: 4px; }
+  .metric-value { font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif); font-size: 28px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; text-shadow: 0 0 20px rgba(167,139,250,0.5); }
+  .metric-sub { font-size: 11px; color:#4a5a7a; margin-top: 3px; }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(22,25,65,0.92);
+    border: 1px solid rgba(180,160,255,0.3);
+    border-radius: 10px;
+    padding: 10px 16px;
+    backdrop-filter: blur(4px);
+  }
+  .search-box:focus-within { border-color: #a78bfa; box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+  .search-box input { color: #ffffff; }
+  .search-box input::placeholder { color: rgba(167,139,250,0.4); }
+  .search-box input {
+    flex: 1; border: none; background: none; outline: none;
+    font-family: var(--font-body, 'Manrope', -apple-system, sans-serif);
+    font-size: 13px; color: #ffffff;
+  }
+  .search-box input::placeholder { color:#4a5a7a; }
+  .search-icon { color:#4a5a7a; font-size: 16px; }
+
+  /* ── TABLE / CARDS ── */
+  .cards-grid { display: flex; flex-direction: column; gap: 12px; }
+
+  .do-card {
+    background: rgba(22,25,65,0.92);
+    border: 1px solid rgba(180,160,255,0.28);
+    border-radius: 14px;
+    padding: 20px 24px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+  }
+  .do-card:hover { border-color: rgba(167,139,250,0.5); box-shadow: 0 0 30px rgba(124,58,237,0.15); }
+  .do-card.completed { opacity: 0.7; }
+  .do-card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, #a78bfa, #7c3aed);
+    border-radius: 14px 0 0 14px;
+    box-shadow: 2px 0 12px rgba(124,58,237,0.5);
+  }
+  .do-card.completed .do-card-accent { background: #4b5563; box-shadow: none; }
+
+  .do-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .do-id {
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 12px rgba(196,181,253,0.4);
+  }
+  .do-customer { font-size: 13px; color: rgba(220,210,255,0.85); margin-top: 2px; }
+  .do-rate {
+    font-family: var(--font-mono, 'DM Mono', 'Courier New', monospace);
+    font-size: 18px;
+    font-weight: 500;
+    color: #c4b5fd;
+    text-align: right;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(196,181,253,0.5);
+  }
+  .do-rate-label { font-size: 11px; color:#4a5a7a; text-align: right; }
+
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .b-green { background: var(--green-bg); color: var(--green-text); }
+  .b-red { background: var(--red-bg); color: var(--red-text); }
+  .b-amber { background: var(--amber-bg); color: var(--amber-text); }
+  .b-blue { background: var(--blue-bg); color: var(--blue-text); }
+  .b-purple { background: var(--purple-bg); color: var(--purple-text); }
+  .b-gray { background: #f0efea; color: rgba(196,181,253,0.7); }
+
+  .do-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: rgba(14,16,46,0.85);
+    border: 1px solid rgba(180,160,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .do-field {
+    padding: 10px 14px;
+    border-right: 1px solid rgba(180,160,255,0.2);
+    border-bottom: 1px solid rgba(180,160,255,0.2);
+  }
+  .do-field:nth-child(3n) { border-right: none; }
+  .do-field:nth-last-child(-n+3) { border-bottom: none; }
+  .do-field-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color:#4a5a7a;
+    margin-bottom: 3px;
+  }
+  .do-field-value {
+    font-family: var(--font-mono, 'DM Mono', 'Courier New', monospace);
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+  .do-field-value.alert { color: var(--red-text); }
+
+  .do-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .act {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-family: var(--font-body, 'Manrope', -apple-system, sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .act-paid { background: rgba(52,211,153,0.12); color: #6ee7b7; border-color: rgba(52,211,153,0.3); }
+  .act-paid:hover { background: rgba(52,211,153,0.2); }
+  .act-paid.active { background: #059669; color: #fff; box-shadow: 0 0 12px rgba(5,150,105,0.4); }
+  .act-done { background: rgba(124,58,237,0.12); color: #c4b5fd; border-color: rgba(124,58,237,0.3); }
+  .act-done:hover { background: rgba(124,58,237,0.22); }
+  .act-done.active { background: #7c3aed; color: #fff; box-shadow: 0 0 12px rgba(124,58,237,0.5); }
+  .act-edit { background:#080c14; color: rgba(196,181,253,0.7); border-color: rgba(160,130,255,0.18); }
+  .act-edit:hover { background: rgba(160,130,255,0.15); }
+  .act-del { background: rgba(248,113,113,0.1); color: #fca5a5; border-color: rgba(248,113,113,0.25); margin-left: auto; }
+  .act-del:hover { background: rgba(248,113,113,0.2); }
+
+  /* ── CUSTOMER CARD ── */
+  .cust-card {
+    background: rgba(22,25,65,0.92);
+    border: 1px solid rgba(180,160,255,0.28);
+    border-radius: 14px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .cust-card:hover { border-color: rgba(196,181,253,0.65); box-shadow: 0 0 28px rgba(140,100,255,0.2); }
+  .cust-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .cust-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(124,58,237,0.2);
+    border: 1px solid rgba(167,139,250,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 15px; font-weight: 700;
+    color: #c4b5fd;
+    flex-shrink: 0;
+  }
+  .cust-name { font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif); font-size: 15px; font-weight: 700; color: #ffffff; }
+  .cust-company { font-size: 12px; color: rgba(196,181,253,0.7); margin-top: 1px; }
+  .cust-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .cust-field-label { font-size: 11px; color:#4a5a7a; margin-bottom: 2px; }
+  .cust-field-value { font-size: 13px; color: #ffffff; }
+
+  /* ── PAYMENT CARD ── */
+  .pay-card {
+    background: rgba(22,25,65,0.92);
+    border: 1px solid rgba(180,160,255,0.28);
+    border-radius: 14px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .pay-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .pay-inv { font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif); font-size: 15px; font-weight: 700; color: #ffffff; }
+  .pay-amount { font-family: var(--font-mono, 'DM Mono', 'Courier New', monospace); font-size: 20px; font-weight: 500; color: #ffffff; }
+  .inv-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin: 12px 0;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .inv-paid { background: rgba(52,211,153,0.15); color: #6ee7b7; border: 1px solid rgba(52,211,153,0.25); }
+  .inv-unpaid { background: rgba(248,113,113,0.15); color: #fca5a5; border: 1px solid rgba(248,113,113,0.25); }
+  .inv-partial { background: rgba(251,191,36,0.15); color: #fde68a; border: 1px solid rgba(251,191,36,0.25); }
+
+  /* ── FLEET GRID ── */
+  .fleet-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .truck-card {
+    background: rgba(22,25,65,0.92);
+    border: 1px solid rgba(180,160,255,0.28);
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .truck-card:hover { border-color: rgba(167,139,250,0.5); box-shadow: 0 0 20px rgba(124,58,237,0.15); }
+  .truck-icon { font-size: 28px; margin-bottom: 10px; }
+  .truck-id { font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif); font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 2px; }
+  .truck-driver { font-size: 11px; color: rgba(196,181,253,0.7); margin-bottom: 8px; }
+  .truck-plate { font-family: var(--font-mono, 'DM Mono', 'Courier New', monospace); font-size: 11px; color:#4a5a7a; margin-bottom: 8px; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,31,24,0.5);
+    z-index: 100;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: rgba(16,18,52,0.98);
+    border: 1px solid rgba(180,160,255,0.35);
+    border-radius: 18px;
+    padding: 28px;
+    width: 100%;
+    max-width: 580px;
+    margin: auto;
+    box-shadow: 0 0 80px rgba(124,58,237,0.3), 0 0 0 1px rgba(160,130,255,0.1);
+    backdrop-filter: blur(20px);
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .modal-title {
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 16px rgba(196,181,253,0.5);
+  }
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(160,130,255,0.18);
+    background:rgba(5,10,18,0.7);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgba(196,181,253,0.7);
+  }
+  .modal-close:hover { background: var(--red-bg); color: var(--red-text); }
+
+  .form-section {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:#4a5a7a;
+    margin: 20px 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(160,130,255,0.18);
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-grid.cols3 { grid-template-columns: 1fr 1fr 1fr; }
+  .form-grid.full { grid-template-columns: 1fr; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(220,210,255,0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .field input, .field select, .field textarea {
+    padding: 10px 14px;
+    border: 1px solid rgba(180,160,255,0.3);
+    border-radius: 10px;
+    font-family: var(--font-body, 'Manrope', -apple-system, sans-serif);
+    font-size: 13px;
+    color: #ffffff;
+    background: rgba(12,14,42,0.9);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167,139,250,0.15);
+  }
+  .field input::placeholder { color: rgba(167,139,250,0.35); }
+  .field select option { background: #06071a; color: #fff; }
+  .field textarea { resize: vertical; min-height: 70px; }
+
+  .toggle-group { display: flex; gap: 16px; margin: 8px 0; }
+  .toggle-item { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .toggle-item label { font-size: 13px; color: #ffffff; cursor: pointer; font-weight: 500; }
+  .toggle {
+    width: 40px; height: 22px;
+    border-radius: 11px;
+    background: #ddd;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+    border: none;
+    flex-shrink: 0;
+  }
+  .toggle.on { background: var(--green-text); }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    top: 3px; left: 3px;
+    transition: left 0.2s;
+  }
+  .toggle.on::after { left: 21px; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: all 0.2s;
+    box-shadow: 0 0 24px rgba(124,58,237,0.5);
+    letter-spacing: 0.5px;
+  }
+  .submit-btn:hover { box-shadow: 0 0 36px rgba(124,58,237,0.75); transform: translateY(-1px); }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(196,181,253,0.5);
+  }
+  .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.4; }
+  .empty-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; color: #ddd6fe; }
+  .empty-sub { font-size: 13px; color:#4a5a7a; }
+
+  /* ── SECTION (page) ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── HAMBURGER BUTTON ── */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 14px; left: 14px;
+    z-index: 200;
+    width: 42px; height: 42px;
+    background: #0d0f30;
+    border: 1px solid rgba(180,160,255,0.4);
+    box-shadow: 0 0 12px rgba(124,58,237,0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  .hamburger span {
+    display: block;
+    width: 20px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .drawer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 150;
+  }
+  .drawer-overlay.open { display: block; }
+
+  .drawer {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 280px;
+    background: linear-gradient(180deg, #0d0f30 0%, #121440 100%);
+    border-right: 1px solid rgba(180,160,255,0.28);
+    z-index: 160;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .drawer.open { transform: translateX(0); }
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid rgba(160,130,255,0.18);
+  }
+  .drawer-logo { display: flex; align-items: center; gap: 10px; }
+  .drawer-logo-icon {
+    width: 34px; height: 34px;
+    background: #7c3aed;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .drawer-logo-icon svg { width: 18px; height: 18px; fill: #fff; }
+  .drawer-logo-name { font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif); font-size: 17px; font-weight: 800; color: #fff; }
+  .drawer-close {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.1);
+    border: none; border-radius: 8px;
+    color: #fff; font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .drawer-section-label {
+    font-size: 10px;
+    color: rgba(220,210,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 20px 20px 6px;
+  }
+  .drawer-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+  }
+  .drawer-nav-item:hover { color: #fff; background: rgba(255,255,255,0.07); }
+  .drawer-nav-item.active { color: #fff; background: rgba(140,100,255,0.28); border-left-color: #c4b5fd; text-shadow: 0 0 12px rgba(196,181,253,0.9); }
+  .drawer-nav-item:hover { color: #e0d7ff; background: rgba(124,58,237,0.1); }
+  .drawer-nav-item .dni { font-size: 22px; }
+  .drawer-nav-item .dnlabel { flex: 1; }
+  .drawer-nav-item .dnarrow { font-size: 12px; opacity: 0.35; }
+  .drawer-footer {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid rgba(160,130,255,0.15);
+    font-size: 11px;
+    color: rgba(220,210,255,0.6);
+  }
+  .drawer-trucks { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+  .drawer-truck-dot { width: 7px; height: 7px; border-radius: 50%; background: #7c3aed; opacity: 0.6; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .hamburger { display: flex; }
+    .main { margin-left: 0; padding: 20px 16px; padding-top: 70px; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .fleet-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-grid.cols3 { grid-template-columns: 1fr 1fr; }
+    .do-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .page-header { flex-direction: column; gap: 12px; }
+    .do-grid { grid-template-columns: 1fr 1fr; }
+    .do-actions { gap: 6px; }
+    .act { font-size: 11px; padding: 6px 10px; }
+    .fleet-grid { grid-template-columns: 1fr 1fr; }
+    .cust-fields { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .do-card, .cust-card, .pay-card, .truck-card, .metric {
+    animation: fadeUp 0.3s ease both;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+
+  /* ── LOAD FILE VIEW ── */
+  .file-hub { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .file-hub-card {
+    background: rgba(22,25,65,0.92);
+    border: 1px solid rgba(180,160,255,0.3);
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+  }
+  .fhc-header {
+    padding: 16px 20px;
+    background: linear-gradient(90deg, #0d0f30, #161850);
+    border-bottom: 1px solid rgba(180,160,255,0.3);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .fhc-header-text { flex: 1; }
+  .fhc-title { font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif); font-size: 17px; font-weight: 700; color: #fff; }
+  .fhc-sub { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .fhc-body { padding: 20px; }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: rgba(14,16,46,0.85);
+    border: 1px solid rgba(180,160,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .info-cell {
+    padding: 10px 14px;
+    border-right: 1px solid rgba(180,160,255,0.2);
+    border-bottom: 1px solid rgba(180,160,255,0.2);
+  }
+  .info-cell:nth-child(3n) { border-right: none; }
+  .info-cell:nth-last-child(-n+3) { border-bottom: none; }
+  .info-cell-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color:#4a5a7a; margin-bottom: 3px; }
+  .info-cell-value { font-size: 13px; color: #ffffff; font-weight: 500; }
+
+  /* Upload zone */
+  .upload-zone {
+    border: 2px dashed rgba(160,130,255,0.25);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+    background: rgba(14,16,50,0.75);
+  }
+  .upload-zone:hover, .upload-zone.dragover {
+    border-color: #a78bfa;
+    background: rgba(124,58,237,0.08);
+    box-shadow: 0 0 20px rgba(124,58,237,0.1);
+  }
+  .upload-icon { font-size: 32px; margin-bottom: 8px; }
+  .upload-text { font-size: 14px; font-weight: 500; color: #ffffff; margin-bottom: 4px; }
+  .upload-sub { font-size: 12px; color:#4a5a7a; }
+  .upload-zone input[type="file"] { display: none; }
+
+  /* File list */
+  .file-list { display: flex; flex-direction: column; gap: 8px; }
+  .file-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    background:rgba(5,10,18,0.7);
+    border-radius: 10px;
+    border: 1px solid rgba(160,130,255,0.18);
+  }
+  .file-icon { font-size: 22px; flex-shrink: 0; }
+  .file-info { flex: 1; min-width: 0; }
+  .file-name { font-size: 13px; font-weight: 500; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .file-meta { font-size: 11px; color:#4a5a7a; margin-top: 2px; }
+  .file-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .file-btn {
+    padding: 5px 10px; border-radius: 7px; font-size: 11px; font-weight: 600;
+    border: 1px solid rgba(160,130,255,0.18); background: rgba(9,11,26,0.9);
+    cursor: pointer; color: #ffffff; white-space: nowrap;
+  }
+  .file-btn:hover { background:rgba(5,10,18,0.7); }
+  .file-btn.del { color: #fca5a5; border-color: rgba(248,113,113,0.25); background: rgba(248,113,113,0.1); }
+  .file-btn.del:hover { background: rgba(248,113,113,0.2); }
+
+  .driver-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background:rgba(5,10,18,0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .driver-cell {
+    padding: 12px 14px;
+    border-right: 1px solid rgba(0,0,0,0.07);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .driver-cell:last-child { border-right: none; }
+  .driver-role { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color:#4a5a7a; }
+  .driver-name { font-size: 13px; font-weight: 600; color: #ffffff; }
+  .driver-date { font-size: 11px; color:#4a5a7a; }
+  .section-label-sm {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color:#4a5a7a;
+    margin: 14px 0 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  @media (max-width: 600px) {
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+    .info-cell:nth-child(3n) { border-right: 1px solid rgba(0,0,0,0.07); }
+    .info-cell:nth-child(2n) { border-right: none; }
+    .driver-row { grid-template-columns: 1fr; }
+    .driver-cell { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .driver-cell:last-child { border-bottom: none; }
+  }
+
+  /* ── LOGIN PAGE ── */
+  #login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #0f1035;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+  }
+  #login-screen::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 55% at 15% 10%, rgba(110,60,255,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 45% at 85% 85%, rgba(40,100,220,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 55% 35%, rgba(150,60,230,0.2) 0%, transparent 50%),
+      #0f1035;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .login-box {
+    background: rgba(16,18,52,0.98);
+    border: 1px solid rgba(180,160,255,0.3);
+    border-radius: 20px;
+    padding: 36px 28px;
+    width: calc(100% - 40px);
+    max-width: 380px;
+    margin: 20px auto;
+    box-shadow: 0 0 80px rgba(124,58,237,0.3);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .login-logo {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 0 24px rgba(124,58,237,0.6);
+  }
+  .login-logo svg { width: 28px; height: 28px; fill: #fff; }
+  .login-title {
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .login-sub {
+    font-size: 13px;
+    color: rgba(220,210,255,0.6);
+    margin-bottom: 32px;
+    letter-spacing: 0.5px;
+  }
+  .login-field {
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  .login-field label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(220,210,255,0.75);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .login-field input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(12,14,42,0.9);
+    border: 1px solid rgba(180,160,255,0.25);
+    border-radius: 10px;
+    font-family: var(--font-body, 'Manrope', -apple-system, sans-serif);
+    font-size: 14px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+  }
+  .login-field input:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167,139,250,0.15);
+  }
+  .login-btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-display, 'Syne', 'Arial Black', sans-serif);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+    box-shadow: 0 0 24px rgba(124,58,237,0.5);
+    letter-spacing: 0.5px;
+  }
+  .login-btn:hover { box-shadow: 0 0 36px rgba(124,58,237,0.75); transform: translateY(-1px); }
+  .login-btn:active { transform: translateY(0); }
+  .login-error {
+    color: #fca5a5;
+    font-size: 13px;
+    margin-top: 12px;
+    display: none;
+    background: rgba(248,113,113,0.1);
+    border: 1px solid rgba(248,113,113,0.25);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+  .login-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+      radial-gradient(1.5px 1.5px at 8% 12%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 65%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 42% 8%, rgba(200,180,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 58% 52%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 72% 78%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 20%, rgba(180,200,255,0.9) 0%, transparent 100%),
+      radial-gradient(2px 2px at 91% 88%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 42%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 38% 88%, rgba(200,180,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 63% 30%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 55%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 5% 70%, rgba(180,200,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 48% 18%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 94% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 32% 35%, rgba(200,180,255,0.8) 0%, transparent 100%);
+  }
+
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)} }
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-stars"></div>
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3a2 2 0 00-2 2v11h2a3 3 0 006 0h6a3 3 0 006 0h2v-5l-3-4zm0 1.5l1.96 2.5H17V9.5h3zM6 18.5A1.5 1.5 0 014.5 17 1.5 1.5 0 016 15.5 1.5 1.5 0 017.5 17 1.5 1.5 0 016 18.5zm12 0A1.5 1.5 0 0116.5 17 1.5 1.5 0 0118 15.5a1.5 1.5 0 011.5 1.5 1.5 1.5 0 01-1.5 1.5z"/></svg>
+    </div>
+    <div class="login-title">Palmera Trans CRM</div>
+    <div class="login-sub">TRANSPORT OPERATIONS</div>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">🔐 Sign In</button>
+    <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+
+<!-- HAMBURGER BUTTON -->
+<button class="hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">
+      <div class="drawer-logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3a2 2 0 00-2 2v11h2a3 3 0 006 0h6a3 3 0 006 0h2v-5l-3-4zm0 1.5l1.96 2.5H17V9.5h3zM6 18.5A1.5 1.5 0 014.5 17 1.5 1.5 0 016 15.5 1.5 1.5 0 017.5 17 1.5 1.5 0 016 18.5zm12 0A1.5 1.5 0 0116.5 17 1.5 1.5 0 0118 15.5a1.5 1.5 0 011.5 1.5 1.5 1.5 0 01-1.5 1.5z"/></svg>
+      </div>
+      <div class="drawer-logo-name">Palmera Trans CRM</div>
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
+  </div>
+  <div class="drawer-section-label">Operations</div>
+  <div class="drawer-nav-item active" id="dnav-do" onclick="showSectionMobile('do')">
+    <span class="dni">&#x1F4CB;</span>
+    <span class="dnlabel">Delivery Orders</span>
+    <span class="dnarrow">&#x203A;</span>
+  </div>
+  <div class="drawer-nav-item" id="dnav-loads" onclick="showSectionMobile('loads')">
+    <span class="dni">&#x1F4E6;</span>
+    <span class="dnlabel">Loads</span>
+    <span class="dnarrow">&#x203A;</span>
+  </div>
+  <div class="drawer-section-label">Business</div>
+  <div class="drawer-nav-item" id="dnav-customers" onclick="showSectionMobile('customers')">
+    <span class="dni">&#x1F465;</span>
+    <span class="dnlabel">Customers</span>
+    <span class="dnarrow">&#x203A;</span>
+  </div>
+  <div class="drawer-nav-item" id="dnav-payments" onclick="showSectionMobile('payments')">
+    <span class="dni">&#x1F4B0;</span>
+    <span class="dnlabel">Payments &amp; Invoices</span>
+    <span class="dnarrow">&#x203A;</span>
+  </div>
+  <div class="drawer-nav-item" id="dnav-fleet" onclick="showSectionMobile('fleet')">
+    <span class="dni">&#x1F69B;</span>
+    <span class="dnlabel">Fleet</span>
+    <span class="dnarrow">&#x203A;</span>
+  </div>
+  <div class="drawer-nav-item" id="dnav-files" onclick="showSectionMobile('files')">
+    <span class="dni">&#x1F4C1;</span>
+    <span class="dnlabel">Load Files</span>
+    <span class="dnarrow">&#x203A;</span>
+  </div>
+  <div class="drawer-footer">
+    <div>5 trucks active</div>
+    <div class="drawer-trucks">
+      <div class="drawer-truck-dot"></div>
+      <div class="drawer-truck-dot"></div>
+      <div class="drawer-truck-dot"></div>
+      <div class="drawer-truck-dot"></div>
+      <div class="drawer-truck-dot"></div>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:rgba(220,210,255,0.5)">☁️ Syncing to Google Sheets</div>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3a2 2 0 00-2 2v11h2a3 3 0 006 0h6a3 3 0 006 0h2v-5l-3-4zm0 1.5l1.96 2.5H17V9.5h3zM6 18.5A1.5 1.5 0 014.5 17 1.5 1.5 0 016 15.5 1.5 1.5 0 017.5 17 1.5 1.5 0 016 18.5zm12 0A1.5 1.5 0 0116.5 17 1.5 1.5 0 0118 15.5a1.5 1.5 0 011.5 1.5 1.5 1.5 0 01-1.5 1.5z"/></svg>
+      </div>
+      <div class="logo-name">Palmera Trans CRM</div>
+      <div class="logo-sub">Transport Operations</div>
+    </div>
+
+    <div class="nav-label">Operations</div>
+    <div class="nav-item active" onclick="showSection('do')">
+      <span class="ni">📋</span><span>Delivery Orders</span>
+    </div>
+    <div class="nav-item" onclick="showSection('loads')">
+      <span class="ni">📦</span><span>Loads</span>
+    </div>
+    <div class="nav-label">Business</div>
+    <div class="nav-item" onclick="showSection('customers')">
+      <span class="ni">👥</span><span>Customers</span>
+    </div>
+    <div class="nav-item" onclick="showSection('payments')">
+      <span class="ni">💰</span><span>Payments</span>
+    </div>
+    <div class="nav-item" onclick="showSection('fleet')">
+      <span class="ni">🚛</span><span>Fleet</span>
+    </div>
+    <div class="nav-item" onclick="showSection('files')">
+      <span class="ni">📁</span><span>Load Files</span>
+    </div>
+
+    <div class="sidebar-footer">
+      <div>5 trucks active</div>
+      <div class="trucks-indicator">
+        <div class="truck-dot"></div>
+        <div class="truck-dot"></div>
+        <div class="truck-dot"></div>
+        <div class="truck-dot"></div>
+        <div class="truck-dot"></div>
+      </div>
+      <div id="sync-indicator" style="margin-top:10px;font-size:11px;color:rgba(220,210,255,0.5);transition:color 0.3s">☁️ Google Sheets</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- DELIVERY ORDERS -->
+    <div class="section active" id="sec-do">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Delivery Orders</div>
+          <div class="page-sub">Track containers, detention, chassis & invoices</div>
+        </div>
+        <button class="add-btn" onclick="openModal('do')">+ New D.O.</button>
+      </div>
+      <div class="metrics" id="metrics-do">
+        <div class="metric">
+          <div class="metric-icon mi-blue">📋</div>
+          <div class="metric-label">Active Loads</div>
+          <div class="metric-value" id="m-do">0</div>
+          <div class="metric-sub">DOs + loads in progress</div>
+        </div>
+        <div class="metric">
+          <div class="metric-icon mi-green">💵</div>
+          <div class="metric-label">Total invoiced</div>
+          <div class="metric-value" id="m-rev">$0</div>
+          <div class="metric-sub">all payments</div>
+        </div>
+        <div class="metric">
+          <div class="metric-icon mi-red">⚠️</div>
+          <div class="metric-label">Unpaid invoices</div>
+          <div class="metric-value" id="m-unpaid-do" style="font-size:20px">0</div>
+          <div class="metric-sub">count · amount owed</div>
+        </div>
+        <div class="metric">
+          <div class="metric-icon mi-amber">🔧</div>
+          <div class="metric-label">Detention flags</div>
+          <div class="metric-value" id="m-det">0</div>
+          <div class="metric-sub">active</div>
+        </div>
+      </div>
+      <!-- UNPAID INVOICES PANEL -->
+      <div id="unpaid-panel" style="margin-bottom:20px;display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px">
+            <span style="background:rgba(248,113,113,0.2);border:1px solid rgba(248,113,113,0.35);border-radius:8px;padding:4px 10px;font-size:12px;color:#fca5a5">⚠ Unpaid</span>
+            Total owed: <span id="unpaid-total-amt" style="color:#fca5a5;font-size:18px">$0</span>
+          </div>
+          <button onclick="toggleUnpaidPanel()" style="background:rgba(180,160,255,0.1);border:1px solid rgba(180,160,255,0.2);border-radius:8px;padding:5px 12px;font-size:12px;color:rgba(220,210,255,0.8);cursor:pointer">Hide ▲</button>
+        </div>
+        <div id="unpaid-list" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+        <button id="show-unpaid-btn" onclick="toggleUnpaidPanel()" style="display:flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);border-radius:10px;font-size:13px;font-weight:600;color:#fca5a5;cursor:pointer">
+          ⚠ Show unpaid invoices <span id="unpaid-badge" style="background:rgba(248,113,113,0.25);border-radius:100px;padding:1px 8px;font-size:11px;margin-left:2px">0</span>
+        </button>
+      </div>
+
+      <div class="search-wrap">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search by D.O. number, container, customer..." oninput="filterDO(this.value)">
+        </div>
+      </div>
+      <div class="cards-grid" id="do-list"></div>
+    </div>
+
+    <!-- LOADS -->
+    <div class="section" id="sec-loads">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Loads</div>
+          <div class="page-sub">Manage freight loads and dispatch</div>
+        </div>
+        <button class="add-btn" onclick="openModal('load')">+ Add load</button>
+      </div>
+      <div class="search-wrap">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search loads..." oninput="filterLoads(this.value)">
+        </div>
+      </div>
+      <div class="cards-grid" id="loads-list"></div>
+    </div>
+
+    <!-- CUSTOMERS -->
+    <div class="section" id="sec-customers">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Customers</div>
+          <div class="page-sub">Contact info and account details</div>
+        </div>
+        <button class="add-btn" onclick="openModal('customer')">+ Add customer</button>
+      </div>
+      <div class="search-wrap">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search customers..." oninput="filterCustomers(this.value)">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px" id="customers-list"></div>
+    </div>
+
+    <!-- PAYMENTS -->
+    <div class="section" id="sec-payments">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Payments</div>
+          <div class="page-sub">Invoice tracking and payment status</div>
+        </div>
+        <button class="add-btn" onclick="openModal('payment')">+ Add payment</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px" id="payments-list"></div>
+    </div>
+
+    <!-- FLEET -->
+    <div class="section" id="sec-fleet">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Fleet</div>
+          <div class="page-sub">5 trucks — drivers and status</div>
+        </div>
+        <button class="add-btn" onclick="openModal('truck')">✏️ Edit truck</button>
+      </div>
+      <div class="fleet-grid" id="fleet-grid"></div>
+    </div>
+
+    <!-- LOAD FILES -->
+    <div class="section" id="sec-files">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Load Files</div>
+          <div class="page-sub">Search any load to see all info, invoices &amp; documents</div>
+        </div>
+      </div>
+
+      <!-- Search bar -->
+      <div class="search-wrap" style="margin-bottom:20px">
+        <div class="search-box">
+          <span class="search-icon">&#x1F50D;</span>
+          <input type="text" id="files-search" placeholder="Search by load ID, container, customer..." oninput="searchLoadFiles(this.value)">
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="files-results">
+        <div class="empty" style="padding:48px 20px">
+          <div class="empty-icon">&#x1F4C1;</div>
+          <div class="empty-text">Search for a load above</div>
+          <div class="empty-sub">Type a load ID, container number, or customer name to pull up the full file</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeMBG(event)">
+  <div class="modal" id="modal-box"></div>
+</div>
+
+<script>
+let data = {
+  dos: [], loads: [], customers: [], payments: [],
+  trucks: [
+    {id:'T-001',driver:'Driver 1',status:'available',plate:''},
+    {id:'T-002',driver:'Driver 2',status:'available',plate:''},
+    {id:'T-003',driver:'Driver 3',status:'available',plate:''},
+    {id:'T-004',driver:'Driver 4',status:'available',plate:''},
+    {id:'T-005',driver:'Driver 5',status:'available',plate:''},
+  ]
+};
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxuvpFPpdEK0wAsCThiRLJs-IVJRUC2BxgXjP9CZtmJhlm3zWcVxRkVR8RMJ2rmL2EN/exec';
+let _saveTimeout = null;
+let _syncStatus = 'idle';
+
+function save(){
+  // Always save locally as backup
+  try{ localStorage.setItem('fleetcrm_v3', JSON.stringify(data)); }catch(e){}
+  // Debounce cloud save — wait 1.5s after last change before saving to Google
+  if(_saveTimeout) clearTimeout(_saveTimeout);
+  _saveTimeout = setTimeout(saveToCloud, 1500);
+}
+
+function saveToCloud(){
+  _syncStatus = 'saving';
+  updateSyncIndicator('saving');
+  // Use JSONP to avoid CORS issues with Google Apps Script
+  const dataStr = encodeURIComponent(JSON.stringify(data));
+  const callbackName = 'crmSaveCallback_' + Date.now();
+  window[callbackName] = function(r){
+    document.getElementById('jsonp-'+callbackName) && document.getElementById('jsonp-'+callbackName).remove();
+    delete window[callbackName];
+    if(r && r.status === 'ok'){
+      _syncStatus = 'saved';
+      updateSyncIndicator('saved');
+      setTimeout(()=>updateSyncIndicator('idle'), 3000);
+    } else {
+      _syncStatus = 'error';
+      updateSyncIndicator('error');
+    }
+  };
+  const script = document.createElement('script');
+  script.id = 'jsonp-' + callbackName;
+  script.src = SCRIPT_URL + '?action=save&callback=' + callbackName + '&data=' + dataStr;
+  script.onerror = function(){
+    updateSyncIndicator('error');
+    delete window[callbackName];
+  };
+  document.head.appendChild(script);
+}
+
+function load(){
+  // First load local data instantly so app feels fast
+  try{
+    const d = localStorage.getItem('fleetcrm_v3');
+    if(d) data = JSON.parse(d);
+  }catch(e){}
+  // Then fetch latest from Google Sheets using JSONP
+  updateSyncIndicator('loading');
+  const loadCallback = 'crmLoadCallback_' + Date.now();
+  window[loadCallback] = function(r){
+    document.getElementById('jsonp-'+loadCallback) && document.getElementById('jsonp-'+loadCallback).remove();
+    delete window[loadCallback];
+    if(r && r.status === 'ok' && r.data && r.data !== '{}'){
+      try{
+        const cloudData = JSON.parse(r.data);
+        data = cloudData;
+        try{ localStorage.setItem('fleetcrm_v3', r.data); }catch(e){}
+        render();
+        updateSyncIndicator('loaded');
+        setTimeout(()=>updateSyncIndicator('idle'), 3000);
+      }catch(e){ updateSyncIndicator('idle'); }
+    } else {
+      updateSyncIndicator('idle');
+    }
+  };
+  const loadScript = document.createElement('script');
+  loadScript.id = 'jsonp-' + loadCallback;
+  loadScript.src = SCRIPT_URL + '?action=load&callback=' + loadCallback;
+  loadScript.onerror = function(){
+    updateSyncIndicator('offline');
+    setTimeout(()=>updateSyncIndicator('idle'), 4000);
+    delete window[loadCallback];
+  };
+  document.head.appendChild(loadScript);
+}
+
+function updateSyncIndicator(status){
+  const el = document.getElementById('sync-indicator');
+  if(!el) return;
+  const states = {
+    saving:  { text: '☁️ Saving...', color: '#fbbf24' },
+    saved:   { text: '✅ Saved', color: '#86efca' },
+    loading: { text: '☁️ Loading...', color: '#93c5fd' },
+    loaded:  { text: '✅ Synced', color: '#86efca' },
+    error:   { text: '⚠️ Save failed', color: '#fca5a5' },
+    offline: { text: '📴 Offline mode', color: '#fbbf24' },
+    idle:    { text: '☁️ Google Sheets', color: 'rgba(220,210,255,0.5)' },
+  };
+  const s = states[status] || states.idle;
+  el.textContent = s.text;
+  el.style.color = s.color;
+}
+
+load();
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.drawer-nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  const dnav=document.getElementById('dnav-'+id);
+  if(dnav)dnav.classList.add('active');
+  render();
+}
+
+function fmt(n){return '$'+Math.round(Number(n)||0).toLocaleString('en-US')}
+
+function badge(s){
+  const m={active:'b-blue',completed:'b-green',cancelled:'b-gray',pending:'b-amber','in-transit':'b-blue',delivered:'b-green',paid:'b-green',unpaid:'b-red',partial:'b-amber',available:'b-green','on-route':'b-blue',maintenance:'b-amber'};
+  return `<span class="badge ${m[s]||'b-gray'}">${s}</span>`;
+}
+
+function toggleUnpaidPanel(){
+  const panel = document.getElementById('unpaid-panel');
+  const btn = document.getElementById('show-unpaid-btn');
+  if(!panel) return;
+  const isVisible = panel.style.display !== 'none';
+  panel.style.display = isVisible ? 'none' : 'block';
+  if(btn) btn.querySelector('span:last-child') && null;
+  renderUnpaidPanel();
+}
+
+function renderUnpaidPanel(){
+  const panel = document.getElementById('unpaid-panel');
+  if(!panel || panel.style.display==='none') return;
+
+  // Gather all unpaid items: unpaid payment records + unpaid DOs with no payment record
+  const doNumsWithLinkedLoad = new Set(data.loads.filter(l=>l.doNum).map(l=>l.doNum));
+  const payedDONums = new Set(data.payments.map(p=>p.doNum).filter(Boolean));
+
+  const unpaidItems = [];
+
+  // From payment records
+  data.payments.filter(p=>p.invoiceStatus==='unpaid'||p.invoiceStatus==='partial').forEach(p=>{
+    unpaidItems.push({
+      label: p.invoice || 'Invoice',
+      customer: p.customer || '—',
+      ref: p.doNum ? 'D.O. '+p.doNum : (p.loadId ? 'Load '+p.loadId : ''),
+      amount: Number(p.amount||0),
+      status: p.invoiceStatus,
+      dueDate: p.dueDate || '',
+      type: 'payment',
+      idx: data.payments.indexOf(p)
+    });
+  });
+
+  // From unpaid DOs with rate and no payment record, no linked load
+  data.dos.filter(d=>
+    !d.invoicePaid &&
+    d.rate &&
+    !payedDONums.has(d.doNum) &&
+    !doNumsWithLinkedLoad.has(d.doNum)
+  ).forEach(d=>{
+    unpaidItems.push({
+      label: 'D.O. '+d.doNum,
+      customer: d.customer || '—',
+      ref: d.container ? 'Container: '+d.container : '',
+      amount: Number(d.rate||0),
+      status: 'unpaid',
+      dueDate: '',
+      type: 'do',
+      idx: data.dos.indexOf(d)
+    });
+  });
+
+  // From loads that have a rate and are NOT delivered/cancelled
+  // and don't already have a paid payment record covering them
+  const payedLoadIds = new Set(
+    data.payments.filter(p=>p.invoiceStatus==='paid').map(p=>p.loadId).filter(Boolean)
+  );
+  const payedLoadDONums = new Set(
+    data.payments.filter(p=>p.invoiceStatus==='paid').map(p=>p.doNum).filter(Boolean)
+  );
+  // Also collect load IDs already shown via payment records above to avoid duplicates
+  const loadIdsInPayments = new Set(
+    data.payments.filter(p=>p.invoiceStatus==='unpaid'||p.invoiceStatus==='partial').map(p=>p.loadId).filter(Boolean)
+  );
+
+  data.loads.filter(l=>
+    l.rate &&
+    l.status !== 'cancelled' &&
+    !payedLoadIds.has(l.id) &&
+    !(l.doNum && payedLoadDONums.has(l.doNum)) &&
+    !loadIdsInPayments.has(l.id)
+  ).forEach(l=>{
+    // Find any linked payment for this load to get its status
+    const linkedPay = data.payments.find(p=>p.loadId===l.id||(l.doNum&&p.doNum===l.doNum));
+    const payStatus = linkedPay ? linkedPay.invoiceStatus : 'unpaid';
+    // Skip if the linked payment is already paid
+    if(payStatus === 'paid') return;
+    unpaidItems.push({
+      label: 'Load '+l.id,
+      customer: l.customer || '—',
+      ref: (l.doNum ? 'D.O. '+l.doNum+' · ' : '')+(l.origin&&l.dest ? l.origin+' → '+l.dest : ''),
+      amount: Number(l.rate||0),
+      status: l.status === 'delivered' ? (payStatus||'unpaid') : 'unpaid',
+      dueDate: '',
+      type: 'load',
+      idx: data.loads.indexOf(l)
+    });
+  });
+
+  const totalAmt = unpaidItems.reduce((a,i)=>a+i.amount,0);
+  const totalEl = document.getElementById('unpaid-total-amt');
+  if(totalEl) totalEl.textContent = fmt(totalAmt);
+
+  const listEl = document.getElementById('unpaid-list');
+  if(!listEl) return;
+
+  if(!unpaidItems.length){
+    listEl.innerHTML = '<div style="text-align:center;padding:20px;font-size:13px;color:rgba(220,210,255,0.5);background:rgba(14,16,50,0.7);border-radius:10px;border:1px solid rgba(180,160,255,0.15)">No unpaid invoices 🎉</div>';
+    return;
+  }
+
+  listEl.innerHTML = unpaidItems.map(item=>`
+    <div style="background:rgba(14,16,50,0.88);border:1px solid rgba(248,113,113,0.25);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:700;font-size:14px;color:#fff;margin-bottom:2px">${item.label}</div>
+        <div style="font-size:12px;color:rgba(220,210,255,0.7)">${item.customer}${item.ref?' · '+item.ref:''}</div>
+        ${item.dueDate?`<div style="font-size:11px;color:#fbbf24;margin-top:2px">Due: ${item.dueDate}</div>`:''}
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-family:'DM Mono',monospace;font-size:17px;font-weight:600;color:#fca5a5">${fmt(item.amount)}</div>
+        <span style="font-size:11px;padding:2px 8px;border-radius:100px;background:${item.status==='partial'?'rgba(251,191,36,0.15)':'rgba(248,113,113,0.15)'};color:${item.status==='partial'?'#fde68a':'#fca5a5'}">${item.status}</span>
+      </div>
+      <button onclick="${item.type==='payment'?`markPaid(${item.idx});renderUnpaidPanel()`:item.type==='load'?`markLoadPaid(${item.idx});renderUnpaidPanel()`:`togglePaid(${item.idx});renderUnpaidPanel()`}" style="padding:7px 14px;border-radius:8px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);color:#86efca;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap">
+        ✓ Mark paid
+      </button>
+    </div>`).join('');
+}
+
+function updateMetrics(){
+  // Get all DO numbers that have a linked load — these are the same job, don't double count
+  const linkedDONums = new Set(data.loads.filter(l=>l.doNum).map(l=>l.doNum));
+
+  // Active DOs: not completed/cancelled AND not already represented by a linked load
+  const activeDOs = data.dos.filter(d=>
+    d.status!=='completed' && d.status!=='cancelled' && !linkedDONums.has(d.doNum)
+  ).length;
+
+  // Active loads: not delivered/cancelled (these already represent their linked DOs)
+  const activeLoads = data.loads.filter(l=>l.status!=='delivered'&&l.status!=='cancelled').length;
+
+  const active = activeDOs + activeLoads;
+
+  // Build a set of DO nums and load IDs that already have a payment record
+  const payedDONums = new Set(data.payments.map(p=>p.doNum).filter(Boolean));
+  const payedLoadIds = new Set(data.payments.map(p=>p.loadId).filter(Boolean));
+
+  // Build set of DO nums that have a linked load — the LOAD is the source of truth for rate
+  // so we should NOT also count the DO rate separately
+  const doNumsWithLinkedLoad = new Set(data.loads.filter(l=>l.doNum).map(l=>l.doNum));
+
+  // Revenue from payment records (single source of truth when a payment exists)
+  // De-duplicate: if both a DO and its linked load have payments, only count once
+  const seenJobKeys = new Set();
+  const revFromPayments = data.payments.reduce((a,p)=>{
+    // Key = loadId if set, otherwise doNum, otherwise invoice
+    const key = p.loadId || p.doNum || p.invoice;
+    if(seenJobKeys.has(key)) return a; // skip duplicate
+    seenJobKeys.add(key);
+    return a + Number(p.amount||0);
+  },0);
+
+  // Revenue from paid DOs that:
+  // 1. Have no payment record AND
+  // 2. Have no linked load (so the load isn't already being counted)
+  const revFromPaidDOs = data.dos.filter(d=>
+    d.invoicePaid &&
+    d.rate &&
+    !payedDONums.has(d.doNum) &&
+    !doNumsWithLinkedLoad.has(d.doNum)
+  ).reduce((a,d)=>a+Number(d.rate||0),0);
+
+  // Revenue from paid/delivered loads that have NO payment record
+  // (if the load has a linked DO that was already counted above, skip it)
+  const revFromPaidLoads = data.loads.filter(l=>
+    (l.status==='delivered') &&
+    l.rate &&
+    !payedLoadIds.has(l.id) &&
+    !(l.doNum && payedDONums.has(l.doNum))
+  ).reduce((a,l)=>a+Number(l.rate||0),0);
+
+  const totalRev = revFromPayments + revFromPaidDOs + revFromPaidLoads;
+
+  // Unpaid = unpaid payment records + DOs with rate/no payment/no linked load + loads with rate/no payment
+  const unpaidPayments = data.payments.filter(p=>p.invoiceStatus==='unpaid'||p.invoiceStatus==='partial');
+  const paidLoadIds2 = new Set(data.payments.filter(p=>p.invoiceStatus==='paid').map(p=>p.loadId).filter(Boolean));
+  const paidLoadDONums2 = new Set(data.payments.filter(p=>p.invoiceStatus==='paid').map(p=>p.doNum).filter(Boolean));
+  const loadIdsInUnpaidPay = new Set(unpaidPayments.map(p=>p.loadId).filter(Boolean));
+
+  const unpaidLoads = data.loads.filter(l=>
+    l.rate &&
+    l.status!=='cancelled' &&
+    !paidLoadIds2.has(l.id) &&
+    !(l.doNum && paidLoadDONums2.has(l.doNum)) &&
+    !loadIdsInUnpaidPay.has(l.id)
+  );
+
+  const unpaidCount = unpaidPayments.length
+    + data.dos.filter(d=>!d.invoicePaid && d.rate && !payedDONums.has(d.doNum) && !doNumsWithLinkedLoad.has(d.doNum)).length
+    + unpaidLoads.length;
+  const unpaidAmt = unpaidPayments.reduce((a,p)=>a+Number(p.amount||0),0)
+    + data.dos.filter(d=>!d.invoicePaid && d.rate && !payedDONums.has(d.doNum) && !doNumsWithLinkedLoad.has(d.doNum)).reduce((a,d)=>a+Number(d.rate||0),0)
+    + unpaidLoads.reduce((a,l)=>a+Number(l.rate||0),0);
+
+  // Detention flags across DOs (not linked) and loads
+  const det = data.dos.filter(d=>(Number(d.detentionOut)>0||Number(d.detentionIn)>0)&&!linkedDONums.has(d.doNum)).length
+            + data.loads.filter(l=>Number(l.detentionOut)>0||Number(l.detentionIn)>0||Number(l.detentionDel)>0).length;
+
+  document.getElementById('m-do').textContent = active;
+  document.getElementById('m-rev').textContent = fmt(totalRev);
+  document.getElementById('m-unpaid-do').textContent = unpaidCount > 0 ? unpaidCount + ' · ' + fmt(unpaidAmt) : '0';
+  document.getElementById('m-det').textContent = det;
+
+  // Update unpaid badge on the show-unpaid button
+  const badge = document.getElementById('unpaid-badge');
+  if(badge) badge.textContent = unpaidCount > 0 ? unpaidCount+' · '+fmt(unpaidAmt) : '0';
+  // Refresh the panel if it's open
+  renderUnpaidPanel();
+}
+
+function renderDO(filter=''){
+  const el=document.getElementById('do-list');
+  if(!el)return;
+  const list=data.dos.filter(d=>!filter||
+    d.doNum.toLowerCase().includes(filter)||
+    d.container.toLowerCase().includes(filter)||
+    (d.customer&&d.customer.toLowerCase().includes(filter)));
+  if(!list.length){
+    el.innerHTML=`<div class="empty"><div class="empty-icon">📋</div><div class="empty-text">No delivery orders yet</div><div class="empty-sub">Click "New D.O." to add your first order</div></div>`;
+    return;
+  }
+  el.innerHTML=list.map(d=>{
+    const idx=data.dos.indexOf(d);
+    const hasDetOut=Number(d.detentionOut)>0;
+    const hasDetIn=Number(d.detentionIn)>0;
+    return `<div class="do-card ${d.status==='completed'?'completed':''}">
+      <div class="do-card-accent"></div>
+      <div class="do-card-top">
+        <div>
+          <div class="do-id">D.O. ${d.doNum} ${d.status==='completed'?'<span class="badge b-green">completed</span>':d.status==='cancelled'?'<span class="badge b-gray">cancelled</span>':d.status==='pending'?'<span class="badge b-amber">pending</span>':'<span class="badge b-blue">active load</span>'}</div>
+          <div class="do-customer">${d.customer||'No customer assigned'} ${d.truck?'· '+d.truck:''}</div>
+        </div>
+        <div>
+          <div class="do-rate">${fmt(d.rate||0)}</div>
+          <div class="do-rate-label">rate</div>
+        </div>
+      </div>
+      <div class="badges">
+        ${d.invoicePaid?'<span class="badge b-green">✓ Invoice paid</span>':'<span class="badge b-red">Invoice unpaid</span>'}
+        ${badge(d.status||'active')}
+        ${hasDetOut?'<span class="badge b-red">⚠ Out-detention</span>':''}
+        ${hasDetIn?'<span class="badge b-red">⚠ In-detention</span>':''}
+        ${d.storage?'<span class="badge b-red">Storage charge</span>':''}
+        ${d.flip?'<span class="badge b-purple">Flip</span>':''}
+        ${Number(d.chassisDays)>0?`<span class="badge b-amber">🔧 ${d.chassisDays}d chassis</span>`:''}
+      </div>
+      <div class="do-grid">
+        <div class="do-field">
+          <div class="do-field-label">Container #</div>
+          <div class="do-field-value">${d.container||'—'}</div>
+        </div>
+        <div class="do-field">
+          <div class="do-field-label">ERD</div>
+          <div class="do-field-value">${d.erd||'—'}</div>
+        </div>
+        <div class="do-field">
+          <div class="do-field-label">Outgate / pull out</div>
+          <div class="do-field-value ${hasDetOut?'alert':''}">${d.outgate||'—'}${hasDetOut?` +${d.detentionOut}d det.`:''}</div>
+        </div>
+        <div class="do-field">
+          <div class="do-field-label">Delivery date</div>
+          <div class="do-field-value ${hasDetIn?'alert':''}">${d.deliveryDate||'—'}${hasDetIn?` +${d.detentionIn}d det.`:''}</div>
+        </div>
+        <div class="do-field">
+          <div class="do-field-label">In-gate / return</div>
+          <div class="do-field-value">${d.ingate||'—'}</div>
+        </div>
+        <div class="do-field">
+          <div class="do-field-label">Chassis days</div>
+          <div class="do-field-value ${Number(d.chassisDays)>0?'alert':''}">${Number(d.chassisDays)>0?d.chassisDays+' days':'—'}</div>
+        </div>
+      </div>
+      ${d.notes?`<div style="font-size:12px;color:rgba(196,181,253,0.7);padding:8px 0;border-top:1px solid var(--border)">${d.notes}</div>`:''}
+      <div class="do-actions">
+        <button class="act act-paid ${d.invoicePaid?'active':''}" onclick="togglePaid(${idx})">
+          ${d.invoicePaid?'✓ Paid':'Mark paid'}
+        </button>
+        <button class="act act-done ${d.status==='completed'?'active':''}" onclick="toggleComplete(${idx})">
+          ${d.status==='completed'?'↺ Reopen':'✓ Complete'}
+        </button>
+        <button class="act act-edit" onclick="openModal('do',${idx})">✏️ Edit</button>
+        <button class="act act-del" onclick="deleteDO(${idx})">🗑 Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderLoads(filter=''){
+  const el=document.getElementById('loads-list');
+  if(!el)return;
+  const list=data.loads.filter(l=>!filter||l.id.toLowerCase().includes(filter)||(l.customer&&l.customer.toLowerCase().includes(filter))||(l.origin&&l.origin.toLowerCase().includes(filter)));
+  if(!list.length){
+    el.innerHTML=`<div class="empty"><div class="empty-icon">📦</div><div class="empty-text">No loads yet</div><div class="empty-sub">Click "Add load" to get started</div></div>`;
+    return;
+  }
+  el.innerHTML=list.map(l=>{
+    const idx=data.loads.indexOf(l);
+    const hasDrivers = l.driverOut||l.driverDel||l.driverIn;
+    return `<div class="do-card">
+      <div class="do-card-accent" style="background:#378ADD"></div>
+      <div class="do-card-top">
+        <div>
+          <div class="do-id">${l.id}</div>
+          <div class="do-customer">${l.origin||'?'} &rarr; ${l.dest||'?'}${l.doNum?' &nbsp;·&nbsp; D.O. '+l.doNum:''}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="do-rate">${fmt(l.rate||0)}</div>
+          <div class="do-rate-label">rate</div>
+          ${(()=>{const p=data.payments.find(pay=>pay.loadId===l.id||pay.doNum===l.id);return p?`<span class="badge ${p.invoiceStatus==='paid'?'b-green':p.invoiceStatus==='partial'?'b-amber':'b-red'}" style="margin-top:4px;display:inline-block">${p.invoiceStatus==='paid'?'✓ paid':p.invoiceStatus==='partial'?'partial':'unpaid'}</span>`:'<span class="badge b-gray" style="margin-top:4px;display:inline-block">no invoice</span>';})()}
+        </div>
+      </div>
+      <div class="badges">
+        ${badge(l.status||'pending')}
+        ${l.doNum?`<span class="badge b-purple">D.O. ${l.doNum}</span>`:''}
+        ${l.customer?`<span class="badge b-gray">${l.customer}</span>`:''}
+        ${l.truck?`<span class="badge b-gray">${l.truck}</span>`:''}
+        ${Number(l.detentionOut)>0?`<span class="badge b-red">&#x26A0; Out-det ${l.detentionOut}d${l.detentionOutCost?' · '+fmt(l.detentionOutCost):''}</span>`:''}
+        ${Number(l.detentionIn)>0?`<span class="badge b-red">&#x26A0; In-det ${l.detentionIn}d${l.detentionInCost?' · '+fmt(l.detentionInCost):''}</span>`:''}
+        ${Number(l.detentionDel)>0?`<span class="badge b-red">&#x26A0; Del-det ${l.detentionDel}d${l.detentionDelCost?' · '+fmt(l.detentionDelCost):''}</span>`:''}
+        ${Number(l.chassisDays)>0?`<span class="badge b-amber">&#x1F527; Chassis ${l.chassisDays}d${l.chassisCost?' · '+fmt(l.chassisCost):''}</span>`:''}
+      </div>
+      ${hasDrivers ? `<div class="do-grid" style="margin-bottom:12px">
+        <div class="do-field">
+          <div class="do-field-label">Outgate driver</div>
+          <div class="do-field-value">${l.driverOut||'&mdash;'}</div>
+          ${l.outgateDate?`<div style="font-size:10px;color:#4a5a7a;margin-top:2px">${l.outgateDate}</div>`:''}
+        </div>
+        <div class="do-field">
+          <div class="do-field-label">Delivery driver</div>
+          <div class="do-field-value">${l.driverDel||'&mdash;'}</div>
+          ${l.deliveryDate?`<div style="font-size:10px;color:#4a5a7a;margin-top:2px">${l.deliveryDate}</div>`:''}
+        </div>
+        <div class="do-field">
+          <div class="do-field-label">In-gate driver</div>
+          <div class="do-field-value">${l.driverIn||'&mdash;'}</div>
+          ${l.ingateDate?`<div style="font-size:10px;color:#4a5a7a;margin-top:2px">${l.ingateDate}</div>`:''}
+        </div>
+      </div>` : ''}
+      ${(Number(l.chassisDays)>0||Number(l.detentionOut)>0||Number(l.detentionIn)>0||Number(l.detentionDel)>0)?`
+      <div class="do-grid" style="margin-bottom:12px">
+        ${Number(l.chassisDays)>0?`
+        <div class="do-field">
+          <div class="do-field-label">&#x1F527; Chassis days</div>
+          <div class="do-field-value b-amber">${l.chassisDays} days</div>
+          ${l.chassisCost?`<div style="font-size:10px;color:#fbbf24;margin-top:2px">${fmt(l.chassisCost)}</div>`:''}
+        </div>`:''}
+        ${Number(l.detentionOut)>0?`
+        <div class="do-field">
+          <div class="do-field-label">&#x26A0; Out-detention</div>
+          <div class="do-field-value alert">${l.detentionOut} days</div>
+          ${l.detentionOutCost?`<div style="font-size:10px;color:#f87171;margin-top:2px">${fmt(l.detentionOutCost)}</div>`:''}
+        </div>`:''}
+        ${Number(l.detentionIn)>0?`
+        <div class="do-field">
+          <div class="do-field-label">&#x26A0; In-detention</div>
+          <div class="do-field-value alert">${l.detentionIn} days</div>
+          ${l.detentionInCost?`<div style="font-size:10px;color:#f87171;margin-top:2px">${fmt(l.detentionInCost)}</div>`:''}
+        </div>`:''}
+        ${Number(l.detentionDel)>0?`
+        <div class="do-field">
+          <div class="do-field-label">&#x26A0; Delivery detention</div>
+          <div class="do-field-value alert">${l.detentionDel} days</div>
+          ${l.detentionDelCost?`<div style="font-size:10px;color:#f87171;margin-top:2px">${fmt(l.detentionDelCost)}</div>`:''}
+        </div>`:''}
+      </div>`:''}
+      ${l.notes?`<div style="font-size:12px;color:rgba(196,181,253,0.7);padding:8px 0">${l.notes}</div>`:''}
+      <div class="do-actions">
+        ${(()=>{const p=data.payments.find(pay=>pay.loadId===l.id||pay.doNum===l.id);const pi=data.payments.indexOf(p);return p?`<button class="act act-paid ${p.invoiceStatus==='paid'?'active':''}" onclick="markPaidFromFile(${pi})">${p.invoiceStatus==='paid'?'✓ Paid':'Mark paid'}</button>`:'';})()}
+        ${l.doNum?`<button class="act act-done" onclick="jumpToDO('${l.doNum}')">📋 View D.O.</button>`:''}
+        <button class="act act-edit" onclick="openModal('load',${idx})">&#x270F;&#xFE0F; Edit</button>
+        <button class="act act-del" onclick="deleteLoad(${idx})">&#x1F5D1; Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderCustomers(filter=''){
+  const el=document.getElementById('customers-list');
+  if(!el)return;
+  const list=data.customers.filter(c=>!filter||(c.name&&c.name.toLowerCase().includes(filter))||(c.company&&c.company.toLowerCase().includes(filter)));
+  if(!list.length){
+    el.innerHTML=`<div class="empty"><div class="empty-icon">👥</div><div class="empty-text">No customers yet</div><div class="empty-sub">Click "Add customer" to get started</div></div>`;
+    return;
+  }
+  el.innerHTML=list.map(c=>{
+    const idx=data.customers.indexOf(c);
+    return `<div class="cust-card">
+      <div class="cust-header">
+        <div class="cust-avatar">${(c.name||'?').substring(0,2).toUpperCase()}</div>
+        <div><div class="cust-name">${c.name}</div><div class="cust-company">${c.company||''}</div></div>
+      </div>
+      <div class="cust-fields">
+        <div><div class="cust-field-label">Phone</div><div class="cust-field-value">${c.phone||'—'}</div></div>
+        <div><div class="cust-field-label">Email</div><div class="cust-field-value" style="font-size:12px">${c.email||'—'}</div></div>
+        <div><div class="cust-field-label">Location</div><div class="cust-field-value">${c.location||'—'}</div></div>
+        ${c.notes?`<div><div class="cust-field-label">Notes</div><div class="cust-field-value" style="font-size:12px">${c.notes}</div></div>`:''}
+      </div>
+      <div class="do-actions" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+        <button class="act act-edit" onclick="openModal('customer',${idx})">✏️ Edit</button>
+        <button class="act act-del" onclick="deleteCustomer(${idx})">🗑 Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderPayments(){
+  const el=document.getElementById('payments-list');
+  if(!el)return;
+  if(!data.payments.length){
+    el.innerHTML=`<div class="empty"><div class="empty-icon">💰</div><div class="empty-text">No payments yet</div><div class="empty-sub">Click "Add payment" to log an invoice</div></div>`;
+    return;
+  }
+  el.innerHTML=data.payments.map(p=>{
+    const idx=data.payments.indexOf(p);
+    const sc=p.invoiceStatus==='paid'?'inv-paid':p.invoiceStatus==='partial'?'inv-partial':'inv-unpaid';
+    const icon=p.invoiceStatus==='paid'?'✓':'⏳';
+    const files=p.files||[];
+    return `<div class="pay-card">
+      <div class="pay-header">
+        <div>
+          <div class="pay-inv">${p.invoice||'Invoice'}</div>
+          <div style="font-size:12px;color:rgba(196,181,253,0.7);margin-top:2px">${p.customer||'—'}${p.doNum?' · D.O. '+p.doNum:''}${p.loadId?' · Load '+p.loadId:''}</div>
+        </div>
+        <div class="pay-amount">${fmt(p.amount||0)}</div>
+      </div>
+      <div class="inv-status-bar ${sc}">
+        <span>${icon}</span>
+        <span>Invoice ${p.invoiceStatus||'unpaid'}</span>
+        ${p.dueDate?`<span style="margin-left:auto;font-size:12px;opacity:0.8">Due ${p.dueDate}</span>`:''}
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:rgba(196,181,253,0.7);margin-bottom:12px">
+        ${p.method?`<span>Method: ${p.method}</span>`:''}
+        ${p.notes?`<span>· ${p.notes}</span>`:''}
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:12px;margin-bottom:10px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#4a5a7a;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
+          <span>📎 Files ${files.length>0?`<span style="background:#7c3aed;color:#fff;border-radius:100px;padding:1px 7px;font-size:10px;margin-left:4px">${files.length}</span>`:''}</span>
+          <label style="cursor:pointer;display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:7px;border:1px solid var(--border);background:rgba(5,10,18,0.7);font-size:11px;color:#ffffff;font-weight:600">
+            ⬆️ Upload
+            <input type="file" multiple accept="*/*" style="display:none" onchange="handlePaymentFileUpload(this,${idx})">
+          </label>
+        </div>
+        <div class="file-list" id="pay-file-list-${idx}">
+          ${files.length===0
+            ? `<div style="text-align:center;padding:10px;font-size:12px;color:#4a5a7a;background:rgba(5,10,18,0.7);border-radius:8px">No files yet — upload invoices, PODs, or receipts</div>`
+            : files.map((f,fi)=>`
+            <div class="file-item">
+              <div class="file-icon">${fileIcon(f.name)}</div>
+              <div class="file-info">
+                <div class="file-name">${f.name}</div>
+                <div class="file-meta">${fmtBytes(f.size)} · ${f.date}</div>
+              </div>
+              <div class="file-actions">
+                <button class="file-btn" onclick="viewPayFile(${idx},${fi})">View</button>
+                <button class="file-btn del" onclick="deletePayFile(${idx},${fi})">✕</button>
+              </div>
+            </div>`).join('')
+          }
+        </div>
+      </div>
+
+      <div class="do-actions">
+        <button class="act act-paid ${p.invoiceStatus==='paid'?'active':''}" onclick="markPaid(${idx})">✓ Mark paid</button>
+        <button class="act act-edit" onclick="openModal('payment',${idx})">✏️ Edit</button>
+        <button class="act act-del" onclick="deletePayment(${idx})">🗑 Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderFleet(){
+  const el=document.getElementById('fleet-grid');
+  if(!el)return;
+  const sc={available:'b-green','on-route':'b-blue',maintenance:'b-amber'};
+  el.innerHTML=data.trucks.map((t,i)=>`
+    <div class="truck-card">
+      <div class="truck-icon">🚛</div>
+      <div class="truck-id">${t.id}</div>
+      <div class="truck-driver">${t.driver}</div>
+      ${t.plate?`<div class="truck-plate">${t.plate}</div>`:''}
+      <span class="badge ${sc[t.status]||'b-gray'}">${t.status}</span>
+    </div>`).join('');
+}
+
+
+function toggleDrawer(){
+  const d=document.getElementById('drawer');
+  const o=document.getElementById('drawer-overlay');
+  const h=document.getElementById('hamburger');
+  const isOpen=d.classList.contains('open');
+  if(isOpen){closeDrawer();}
+  else{d.classList.add('open');o.classList.add('open');h.classList.add('open');}
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+function showSectionMobile(id){
+  showSectionById(id);
+  closeDrawer();
+}
+function showSectionById(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.drawer-nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  const dnav=document.getElementById('dnav-'+id);
+  if(dnav)dnav.classList.add('active');
+  render();
+}
+
+function render(){renderDO();renderLoads();renderCustomers();renderPayments();renderFleet();updateMetrics();}
+function filterDO(v){renderDO(v.toLowerCase())}
+function filterLoads(v){renderLoads(v.toLowerCase())}
+function filterCustomers(v){renderCustomers(v.toLowerCase())}
+
+function cOpts(sel=''){return data.customers.map(c=>`<option value="${c.name}"${c.name===sel?' selected':''}>${c.name}</option>`).join('')}
+function tOpts(sel=''){return data.trucks.map(t=>`<option value="${t.id}"${t.id===sel?' selected':''}>${t.id} — ${t.driver}</option>`).join('')}
+function dOpts(sel=''){return data.dos.map(d=>`<option value="${d.doNum}"${d.doNum===sel?' selected':''}>D.O. ${d.doNum}</option>`).join('')}
+function getDOOptions(sel){
+  return data.dos.map(function(d){
+    var selected = d.doNum===sel ? 'selected' : '';
+    var label = d.doNum + ' — ' + (d.customer||'No customer') + (d.container?' · '+d.container:'');
+    return '<option value="'+d.doNum+'" '+selected+'>'+label+'</option>';
+  }).join('');
+}
+function getLoadOptions(sel){
+  return data.loads.map(function(l){
+    var selected = l.id===sel ? 'selected' : '';
+    var label = l.id + ' — ' + (l.origin||'?') + ' → ' + (l.dest||'?');
+    return '<option value="'+l.id+'" '+selected+'>'+label+'</option>';
+  }).join('');
+}
+function getMethodOptions(sel){
+  return ['Check','ACH','Wire','Cash','Factoring'].map(function(m){
+    return '<option value="'+m+'" '+(m===sel?'selected':'')+'>'+m+'</option>';
+  }).join('');
+}
+
+function openModal(type, editIdx=-1){
+  const box=document.getElementById('modal-box');
+  const map={do:'dos',load:'loads',customer:'customers',payment:'payments',truck:'trucks'};
+  const d=editIdx>=0?data[map[type]][editIdx]:{};
+  let html='';
+
+  if(type==='do'){
+    html=`<div class="modal-header"><div class="modal-title">Delivery Order</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-grid">
+      <div class="field"><label>D.O. Number</label><input id="f-donum" value="${d.doNum||'DO-'+String(data.dos.length+1).padStart(3,'0')}" placeholder="DO-001"></div>
+      <div class="field">
+        <label>Customer</label>
+        <select id="f-docust" onchange="toggleNewCustDO(this.value)">
+          <option value="">Select customer...</option>
+          ${cOpts(d.customer||'')}
+          <option value="__new__">+ Create new customer</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Truck</label><select id="f-dotruck"><option value="">Assign truck...</option>${tOpts(d.truck||'')}</select></div>
+      <div class="field"><label>Rate ($)</label><input id="f-dorate" type="number" value="${d.rate||''}" placeholder="2500"></div>
+    </div>
+    <div id="new-cust-do-fields" style="display:none; background:rgba(14,16,50,0.9); border:1px solid rgba(180,160,255,0.25); border-radius:12px; padding:14px; margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#9aaa9f;margin-bottom:10px;">New customer details</div>
+      <div class="form-grid">
+        <div class="field"><label>Full name *</label><input id="f-do-newcust-name" placeholder="John Smith"></div>
+        <div class="field"><label>Company</label><input id="f-do-newcust-company" placeholder="ABC Logistics"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Phone</label><input id="f-do-newcust-phone" placeholder="(555) 000-0000"></div>
+        <div class="field"><label>Email</label><input id="f-do-newcust-email" placeholder="email@..."></div>
+      </div>
+      <div class="field"><label>Location</label><input id="f-do-newcust-loc" placeholder="Chicago, IL"></div>
+    </div>
+    <div class="form-section">Container info</div>
+    <div class="form-grid">
+      <div class="field"><label>Container number</label><input id="f-container" value="${d.container||''}" placeholder="MSCU1234567"></div>
+      <div class="field"><label>ERD — estimated arrival date</label><input id="f-erd" type="date" value="${d.erd||''}"></div>
+    </div>
+    <div class="form-section">Timeline & detention</div>
+    <div class="form-grid cols3">
+      <div class="field"><label>Outgate / pull out</label><input id="f-outgate" type="date" value="${d.outgate||''}"></div>
+      <div class="field"><label>Out-detention days</label><input id="f-detout" type="number" value="${d.detentionOut||''}" placeholder="0" min="0"></div>
+      <div class="field" style="display:flex;flex-direction:column;justify-content:flex-end"></div>
+    </div>
+    <div class="form-grid cols3">
+      <div class="field"><label>Delivery date</label><input id="f-deldate" type="date" value="${d.deliveryDate||''}"></div>
+      <div class="field"><label>In-detention days</label><input id="f-detin" type="number" value="${d.detentionIn||''}" placeholder="0" min="0"></div>
+      <div class="field"><label>Chassis days</label><input id="f-chassis" type="number" value="${d.chassisDays||''}" placeholder="0" min="0"></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>In-gate / return container</label><input id="f-ingate" type="date" value="${d.ingate||''}"></div>
+    </div>
+    <div class="form-section">Extras</div>
+    <div class="toggle-group">
+      <div class="toggle-item">
+        <button class="toggle ${d.storage?'on':''}" id="tog-storage" onclick="togSwitch('tog-storage')" type="button"></button>
+        <label onclick="togSwitch('tog-storage')">Storage charge</label>
+      </div>
+      <div class="toggle-item">
+        <button class="toggle ${d.flip?'on':''}" id="tog-flip" onclick="togSwitch('tog-flip')" type="button"></button>
+        <label onclick="togSwitch('tog-flip')">Flip</label>
+      </div>
+    </div>
+    <div class="form-section">Status</div>
+    <div class="form-grid">
+      <div class="field"><label>Order status</label>
+        <select id="f-dostatus">
+          <option ${(d.status||'active')==='active'?'selected':''}>active</option>
+          <option ${d.status==='pending'?'selected':''}>pending</option>
+          <option ${d.status==='completed'?'selected':''}>completed</option>
+          <option ${d.status==='cancelled'?'selected':''}>cancelled</option>
+        </select>
+      </div>
+      <div class="field"><label>Invoice status</label>
+        <select id="f-doinv">
+          <option value="unpaid" ${!d.invoicePaid?'selected':''}>Unpaid</option>
+          <option value="paid" ${d.invoicePaid?'selected':''}>Paid</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-grid full"><div class="field"><label>Notes</label><textarea id="f-donotes">${d.notes||''}</textarea></div></div>
+    <button class="submit-btn" onclick="saveDO(${editIdx})">${editIdx>=0?'Update delivery order':'Add delivery order'}</button>`;
+  }
+  else if(type==='load'){
+    html=`<div class="modal-header"><div class="modal-title">Load details</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-grid">
+      <div class="field"><label>Load ID</label><input id="f-lid" value="${d.id||'LD-'+String(data.loads.length+1).padStart(3,'0')}"></div>
+      <div class="field"><label>Date</label><input id="f-ldate" type="date" value="${d.date||''}"></div>
+    </div>
+    <div class="form-section" style="margin-top:0;margin-bottom:12px">Link to Delivery Order</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>Select D.O.</label>
+        <select id="f-l-donum" onchange="autofillFromDO(this.value)">
+          <option value="">Select a D.O. (optional)</option>
+          ${getDOOptions(d.doNum||'')}
+        </select>
+      </div>
+      <div class="field"><label>Rate ($)</label><input id="f-lrate" type="number" value="${d.rate||''}" placeholder="0.00"></div>
+    </div>
+    <div id="do-preview" style="display:none;background:rgba(14,16,50,0.9);border:1px solid rgba(180,160,255,0.25);border-radius:10px;padding:12px;margin-bottom:4px;font-size:12px;color:rgba(220,210,255,0.9)"></div>
+    <div class="form-grid">
+      <div class="field"><label>Origin</label><input id="f-lorigin" value="${d.origin||''}" placeholder="City, ST"></div>
+      <div class="field"><label>Destination</label><input id="f-ldest" value="${d.dest||''}" placeholder="City, ST"></div>
+    </div>
+    <div class="form-grid">
+      <div class="field">
+        <label>Customer</label>
+        <select id="f-lcust" onchange="toggleNewCust(this.value)">
+          <option value="">Select existing customer...</option>
+          ${cOpts(d.customer||'')}
+          <option value="__new__">+ Create new customer</option>
+        </select>
+      </div>
+      <div class="field"><label>Main truck (optional)</label><select id="f-ltruck"><option value="">Assign truck...</option>${tOpts(d.truck||'')}</select></div>
+    </div>
+    <div class="form-section" style="margin-top:16px">Driver assignments</div>
+    <div class="form-grid" style="background:#080c14;border-radius:12px;padding:14px;gap:10px;">
+      <div class="field">
+        <label>&#x1F69A; Outgate driver</label>
+        <input id="f-driver-out" value="${d.driverOut||''}" placeholder="Name or truck ID">
+      </div>
+      <div class="field">
+        <label>&#x1F4CD; Delivery driver</label>
+        <input id="f-driver-del" value="${d.driverDel||''}" placeholder="Name or truck ID">
+      </div>
+      <div class="field">
+        <label>&#x1F504; In-gate driver</label>
+        <input id="f-driver-in" value="${d.driverIn||''}" placeholder="Name or truck ID">
+      </div>
+      <div class="field">
+        <label>&#x1F4C5; Outgate date</label>
+        <input id="f-outgate-l" type="date" value="${d.outgateDate||''}">
+      </div>
+      <div class="field">
+        <label>&#x1F4C5; Delivery date</label>
+        <input id="f-deldate-l" type="date" value="${d.deliveryDate||''}">
+      </div>
+      <div class="field">
+        <label>&#x1F4C5; In-gate date</label>
+        <input id="f-ingate-l" type="date" value="${d.ingateDate||''}">
+      </div>
+    </div>
+    <div id="new-cust-fields" style="display:none; background:rgba(14,16,50,0.9); border:1px solid rgba(180,160,255,0.25); border-radius:12px; padding:14px; margin-bottom:8px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#9aaa9f;margin-bottom:10px;">New customer details</div>
+      <div class="form-grid">
+        <div class="field"><label>Full name *</label><input id="f-newcust-name" placeholder="John Smith"></div>
+        <div class="field"><label>Company</label><input id="f-newcust-company" placeholder="ABC Logistics"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Phone</label><input id="f-newcust-phone" placeholder="(555) 000-0000"></div>
+        <div class="field"><label>Email</label><input id="f-newcust-email" placeholder="email@..."></div>
+      </div>
+      <div class="field"><label>Location</label><input id="f-newcust-loc" placeholder="Chicago, IL"></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Status</label>
+        <select id="f-lstatus">
+          <option ${(d.status||'pending')==='pending'?'selected':''}>pending</option>
+          <option ${d.status==='in-transit'?'selected':''}>in-transit</option>
+          <option ${d.status==='delivered'?'selected':''}>delivered</option>
+          <option ${d.status==='cancelled'?'selected':''}>cancelled</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-section" style="margin-top:16px">Chassis &amp; detention</div>
+    <div class="form-grid" style="background:rgba(14,16,50,0.9);border:1px solid rgba(180,160,255,0.25);border-radius:12px;padding:14px;gap:10px;">
+      <div class="field">
+        <label>&#x1F4B0; Chassis rental ($)</label>
+        <input id="f-chassis-cost" type="number" value="${d.chassisCost||''}" placeholder="0.00" min="0" step="0.01">
+      </div>
+      <div class="field">
+        <label>&#x1F4C5; Chassis days</label>
+        <input id="f-chassis-days" type="number" value="${d.chassisDays||''}" placeholder="0" min="0">
+      </div>
+      <div class="field">
+        <label>&#x26A0;&#xFE0F; Out-detention days</label>
+        <input id="f-l-detout" type="number" value="${d.detentionOut||''}" placeholder="0" min="0">
+      </div>
+      <div class="field">
+        <label>&#x1F4B5; Out-detention cost ($)</label>
+        <input id="f-l-detout-cost" type="number" value="${d.detentionOutCost||''}" placeholder="0.00" min="0" step="0.01">
+      </div>
+      <div class="field">
+        <label>&#x26A0;&#xFE0F; In-detention days</label>
+        <input id="f-l-detin" type="number" value="${d.detentionIn||''}" placeholder="0" min="0">
+      </div>
+      <div class="field">
+        <label>&#x1F4B5; In-detention cost ($)</label>
+        <input id="f-l-detin-cost" type="number" value="${d.detentionInCost||''}" placeholder="0.00" min="0" step="0.01">
+      </div>
+      <div class="field">
+        <label>&#x26A0;&#xFE0F; Delivery detention days</label>
+        <input id="f-l-detdel" type="number" value="${d.detentionDel||''}" placeholder="0" min="0">
+      </div>
+      <div class="field">
+        <label>&#x1F4B5; Delivery detention cost ($)</label>
+        <input id="f-l-detdel-cost" type="number" value="${d.detentionDelCost||''}" placeholder="0.00" min="0" step="0.01">
+      </div>
+    </div>
+    <div class="form-grid full"><div class="field"><label>Notes</label><textarea id="f-lnotes">${d.notes||''}</textarea></div></div>
+    <button class="submit-btn" onclick="saveLoad(${editIdx})">${editIdx>=0?'Update load':'Add load'}</button>`;
+  }
+  else if(type==='customer'){
+    html=`<div class="modal-header"><div class="modal-title">Customer</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-grid">
+      <div class="field"><label>Full name</label><input id="f-cname" value="${d.name||''}" placeholder="John Smith"></div>
+      <div class="field"><label>Company</label><input id="f-ccompany" value="${d.company||''}" placeholder="ABC Logistics"></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Phone</label><input id="f-cphone" value="${d.phone||''}" placeholder="(555) 000-0000"></div>
+      <div class="field"><label>Email</label><input id="f-cemail" value="${d.email||''}" placeholder="email@..."></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Location</label><input id="f-cloc" value="${d.location||''}" placeholder="Chicago, IL"></div>
+    </div>
+    <div class="form-grid full"><div class="field"><label>Notes</label><textarea id="f-cnotes">${d.notes||''}</textarea></div></div>
+    <button class="submit-btn" onclick="saveCustomer(${editIdx})">${editIdx>=0?'Update customer':'Add customer'}</button>`;
+  }
+  else if(type==='payment'){
+    html=`<div class="modal-header"><div class="modal-title">Payment / Invoice</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-grid">
+      <div class="field"><label>Invoice #</label><input id="f-pinv" value="${d.invoice||'INV-'+String(data.payments.length+1).padStart(3,'0')}"></div>
+      <div class="field"><label>Due date</label><input id="f-pdue" type="date" value="${d.dueDate||''}"></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Customer</label><select id="f-pcust"><option value="">Select...</option>${cOpts(d.customer||'')}</select></div>
+      <div class="field"><label>Linked D.O. #</label><select id="f-pdo"><option value="">Link to D.O.</option>${dOpts(d.doNum||'')}</select></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Linked Load ID</label><select id="f-pload"><option value="">Link to Load</option>${getLoadOptions(d.loadId||'')}</select></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Amount ($)</label><input id="f-pamount" type="number" value="${d.amount||''}"></div>
+      <div class="field"><label>Payment method</label>
+        <select id="f-pmethod">
+          ${getMethodOptions(d.method||'')}
+        </select>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Invoice status</label>
+        <select id="f-pstatus">
+          <option value="unpaid" ${(d.invoiceStatus||'unpaid')==='unpaid'?'selected':''}>Unpaid</option>
+          <option value="paid" ${d.invoiceStatus==='paid'?'selected':''}>Paid</option>
+          <option value="partial" ${d.invoiceStatus==='partial'?'selected':''}>Partial</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-grid full"><div class="field"><label>Notes</label><textarea id="f-pnotes">${d.notes||''}</textarea></div></div>
+    <button class="submit-btn" onclick="savePayment(${editIdx})">${editIdx>=0?'Update payment':'Add payment'}</button>`;
+  }
+  else if(type==='truck'){
+    const opts=data.trucks.map((t,i)=>`<option value="${i}">${t.id} — ${t.driver}</option>`).join('');
+    const t=data.trucks[0];
+    html=`<div class="modal-header"><div class="modal-title">Edit truck</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-grid full"><div class="field"><label>Select truck</label><select id="f-tsel" onchange="refreshTruck(this.value)">${opts}</select></div></div>
+    <div class="form-grid">
+      <div class="field"><label>Truck ID</label><input id="f-tid" value="${t.id}"></div>
+      <div class="field"><label>Plate number</label><input id="f-tplate" value="${t.plate||''}"></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Driver name</label><input id="f-tdriver" value="${t.driver}"></div>
+      <div class="field"><label>Status</label><select id="f-tstatus"><option>available</option><option>on-route</option><option>maintenance</option></select></div>
+    </div>
+    <button class="submit-btn" onclick="saveTruck()">Update truck</button>`;
+  }
+
+  box.innerHTML=html;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function togSwitch(id){document.getElementById(id).classList.toggle('on')}
+
+function g(id){return document.getElementById(id)?document.getElementById(id).value:''}
+function tog(id){return document.getElementById(id)?document.getElementById(id).classList.contains('on'):false}
+
+function saveDO(idx){
+  let doCustName = g('f-docust');
+  if(doCustName === '__new__'){
+    const newName = g('f-do-newcust-name').trim();
+    if(!newName){alert('Please enter a name for the new customer');return;}
+    data.customers.unshift({name:newName,company:g('f-do-newcust-company'),phone:g('f-do-newcust-phone'),email:g('f-do-newcust-email'),location:g('f-do-newcust-loc'),notes:''});
+    doCustName = newName;
+  }
+  const obj={
+    doNum:g('f-donum'),customer:doCustName,truck:g('f-dotruck'),rate:g('f-dorate'),
+    container:g('f-container'),erd:g('f-erd'),outgate:g('f-outgate'),detentionOut:g('f-detout'),
+    deliveryDate:g('f-deldate'),detentionIn:g('f-detin'),ingate:g('f-ingate'),
+    chassisDays:g('f-chassis'),storage:tog('tog-storage'),flip:tog('tog-flip'),
+    status:g('f-dostatus'),invoicePaid:g('f-doinv')==='paid',notes:g('f-donotes')
+  };
+  if(!obj.doNum){alert('Please enter a D.O. number');return;}
+  if(idx>=0)data.dos[idx]=obj;else data.dos.unshift(obj);
+  save();closeModal();render();
+}
+function toggleNewCust(val){
+  const box = document.getElementById('new-cust-fields');
+  if(box) box.style.display = val === '__new__' ? 'block' : 'none';
+}
+function toggleNewCustDO(val){
+  const box = document.getElementById('new-cust-do-fields');
+  if(box) box.style.display = val === '__new__' ? 'block' : 'none';
+}
+function toggleNewCustDO(val){
+  const box = document.getElementById('new-cust-do-fields');
+  if(box) box.style.display = val === '__new__' ? 'block' : 'none';
+}
+
+function autofillFromDO(doNum){
+  const preview = document.getElementById('do-preview');
+  if(!doNum){
+    if(preview) preview.style.display='none';
+    return;
+  }
+  const doData = data.dos.find(d=>d.doNum===doNum);
+  if(!doData){
+    if(preview) preview.style.display='none';
+    return;
+  }
+
+  // Auto-fill customer if not already set
+  const custSel = document.getElementById('f-lcust');
+  if(custSel && (!custSel.value || custSel.value==='') && doData.customer){
+    custSel.value = doData.customer;
+  }
+
+  // Auto-fill truck
+  const truckSel = document.getElementById('f-ltruck');
+  if(truckSel && (!truckSel.value || truckSel.value==='') && doData.truck){
+    truckSel.value = doData.truck;
+  }
+
+  // Auto-fill rate
+  const rateIn = document.getElementById('f-lrate');
+  if(rateIn && (!rateIn.value || rateIn.value==='') && doData.rate){
+    rateIn.value = doData.rate;
+  }
+
+  // Auto-fill dates if available
+  const outIn = document.getElementById('f-outgate-l');
+  if(outIn && !outIn.value && doData.outgate) outIn.value = doData.outgate;
+  const delIn = document.getElementById('f-deldate-l');
+  if(delIn && !delIn.value && doData.deliveryDate) delIn.value = doData.deliveryDate;
+  const ingIn = document.getElementById('f-ingate-l');
+  if(ingIn && !ingIn.value && doData.ingate) ingIn.value = doData.ingate;
+
+  // Show preview of D.O. info
+  if(preview){
+    const parts = [];
+    if(doData.container) parts.push('📦 Container: <strong>'+doData.container+'</strong>');
+    if(doData.erd) parts.push('📅 ERD: <strong>'+doData.erd+'</strong>');
+    if(doData.customer) parts.push('👤 Customer: <strong>'+doData.customer+'</strong>');
+    if(doData.rate) parts.push('💵 Rate: <strong>$'+Number(doData.rate).toLocaleString()+'</strong>');
+    if(doData.status) parts.push('Status: <strong>'+doData.status+'</strong>');
+    const flags = [];
+    if(Number(doData.chassisDays)>0) flags.push('🔧 Chassis: '+doData.chassisDays+'d');
+    if(Number(doData.detentionOut)>0) flags.push('⚠️ Out-det: '+doData.detentionOut+'d');
+    if(Number(doData.detentionIn)>0) flags.push('⚠️ In-det: '+doData.detentionIn+'d');
+    if(doData.storage) flags.push('📦 Storage');
+    if(doData.flip) flags.push('🔄 Flip');
+    preview.innerHTML = '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(210,195,255,0.8);margin-bottom:8px">D.O. Details auto-filled ✓</div>'
+      + parts.join(' &nbsp;·&nbsp; ')
+      + (flags.length?'<br><span style="color:#fbbf24;margin-top:4px;display:inline-block">'+flags.join(' · ')+'</span>':'');
+    preview.style.display='block';
+  }
+}
+
+function saveLoad(idx){
+  let custName = g('f-lcust');
+  if(custName === '__new__'){
+    const newName = g('f-newcust-name').trim();
+    if(!newName){alert('Please enter a name for the new customer');return;}
+    const newCust = {
+      name: newName,
+      company: g('f-newcust-company'),
+      phone: g('f-newcust-phone'),
+      email: g('f-newcust-email'),
+      location: g('f-newcust-loc'),
+      notes: ''
+    };
+    data.customers.unshift(newCust);
+    custName = newName;
+  }
+  const obj={id:g('f-lid'),date:g('f-ldate'),origin:g('f-lorigin'),dest:g('f-ldest'),customer:custName,truck:g('f-ltruck'),rate:g('f-lrate'),doNum:g('f-l-donum'),status:g('f-lstatus'),notes:g('f-lnotes'),driverOut:g('f-driver-out'),driverDel:g('f-driver-del'),driverIn:g('f-driver-in'),outgateDate:g('f-outgate-l'),deliveryDate:g('f-deldate-l'),ingateDate:g('f-ingate-l'),chassisCost:g('f-chassis-cost'),chassisDays:g('f-chassis-days'),detentionOut:g('f-l-detout'),detentionOutCost:g('f-l-detout-cost'),detentionIn:g('f-l-detin'),detentionInCost:g('f-l-detin-cost'),detentionDel:g('f-l-detdel'),detentionDelCost:g('f-l-detdel-cost')};
+  if(!obj.origin){alert('Enter origin');return;}
+  if(idx>=0)data.loads[idx]=obj;else data.loads.unshift(obj);
+  save();closeModal();render();
+}
+function saveCustomer(idx){
+  const obj={name:g('f-cname'),company:g('f-ccompany'),phone:g('f-cphone'),email:g('f-cemail'),location:g('f-cloc'),notes:g('f-cnotes')};
+  if(!obj.name){alert('Enter a name');return;}
+  if(idx>=0)data.customers[idx]=obj;else data.customers.unshift(obj);
+  save();closeModal();render();
+}
+function savePayment(idx){
+  const obj={invoice:g('f-pinv'),dueDate:g('f-pdue'),customer:g('f-pcust'),doNum:g('f-pdo'),loadId:g('f-pload'),amount:g('f-pamount'),method:g('f-pmethod'),invoiceStatus:g('f-pstatus'),notes:g('f-pnotes')};
+  if(!obj.amount){alert('Enter amount');return;}
+  if(idx>=0)data.payments[idx]=obj;else data.payments.unshift(obj);
+  save();closeModal();render();
+}
+function saveTruck(){
+  const idx=Number(g('f-tsel'));
+  data.trucks[idx]={id:g('f-tid'),plate:g('f-tplate'),driver:g('f-tdriver'),status:g('f-tstatus')};
+  save();closeModal();render();
+}
+function refreshTruck(idx){
+  const t=data.trucks[Number(idx)];
+  document.getElementById('f-tid').value=t.id;
+  document.getElementById('f-tplate').value=t.plate||'';
+  document.getElementById('f-tdriver').value=t.driver;
+  document.getElementById('f-tstatus').value=t.status;
+}
+function togglePaid(i){
+  data.dos[i].invoicePaid=!data.dos[i].invoicePaid;
+  const doNum=data.dos[i].doNum;
+  const isPaid=data.dos[i].invoicePaid;
+
+  // Find existing linked payment
+  let linked=data.payments.find(p=>
+    (doNum&&(p.doNum===doNum||p.loadId===doNum))||
+    p.doNum===data.dos[i].doNum
+  );
+
+  if(linked){
+    // Update existing payment status
+    linked.invoiceStatus=isPaid?'paid':'unpaid';
+  } else if(isPaid){
+    // Use the linked load's rate if one exists, otherwise fall back to DO rate
+    const linkedLoad = data.loads.find(l=>l.doNum===data.dos[i].doNum);
+    const rate = linkedLoad ? linkedLoad.rate : data.dos[i].rate;
+    const loadId = linkedLoad ? linkedLoad.id : '';
+    if(rate){
+      const invNum='INV-'+String(data.payments.length+1).padStart(3,'0');
+      data.payments.unshift({
+        invoice: invNum,
+        customer: data.dos[i].customer||'',
+        doNum: data.dos[i].doNum||'',
+        loadId: loadId,
+        amount: rate,
+        method: '',
+        invoiceStatus: 'paid',
+        dueDate: '',
+        notes: 'Auto-created from D.O. '+data.dos[i].doNum,
+        files: []
+      });
+    }
+  }
+  save();render();
+}
+function toggleComplete(i){data.dos[i].status=data.dos[i].status==='completed'?'active':'completed';save();render();}
+function markPaid(i){data.payments[i].invoiceStatus='paid';save();renderPayments();updateMetrics();}
+
+function markLoadPaid(i){
+  const l = data.loads[i];
+  if(!l) return;
+  // Find existing linked payment and mark it paid
+  const linked = data.payments.find(p=>p.loadId===l.id||(l.doNum&&p.doNum===l.doNum));
+  if(linked){
+    linked.invoiceStatus='paid';
+  } else if(l.rate){
+    // Auto-create a paid payment record for this load
+    const invNum='INV-'+String(data.payments.length+1).padStart(3,'0');
+    data.payments.unshift({
+      invoice: invNum,
+      customer: l.customer||'',
+      doNum: l.doNum||'',
+      loadId: l.id,
+      amount: l.rate,
+      method: '',
+      invoiceStatus: 'paid',
+      dueDate: '',
+      notes: 'Auto-created from Load '+l.id,
+      files: []
+    });
+  }
+  // Also mark the load as delivered if it isn't already
+  // (paying a load implies the job is done)
+  save();render();
+}
+function jumpToDO(doNum){
+  // Switch to the D.O. tab and highlight the matching DO
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.drawer-nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('sec-do').classList.add('active');
+  const dnav=document.getElementById('dnav-do');
+  if(dnav) dnav.classList.add('active');
+  // Find matching nav item in sidebar and activate
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'do'")) n.classList.add('active');
+  });
+  render();
+  // Scroll to and highlight the DO card
+  setTimeout(()=>{
+    const cards = document.querySelectorAll('#do-list .do-card');
+    const doList = Array.from(data.dos);
+    doList.forEach((d,i)=>{
+      if(d.doNum===doNum && cards[i]){
+        cards[i].scrollIntoView({behavior:'smooth',block:'center'});
+        cards[i].style.border='2px solid #c4b5fd';
+        cards[i].style.boxShadow='0 0 30px rgba(196,181,253,0.4)';
+        setTimeout(()=>{
+          cards[i].style.border='';
+          cards[i].style.boxShadow='';
+        },3000);
+      }
+    });
+  },200);
+}
+
+function markPaidFromFile(i){
+  if(i<0||i>=data.payments.length) return;
+  data.payments[i].invoiceStatus = data.payments[i].invoiceStatus==='paid'?'unpaid':'paid';
+  save();
+  render();
+  const q=document.getElementById('files-search');
+  if(q&&q.value) searchLoadFiles(q.value);
+}
+function viewPayFileByIdx(payIdx, fi){
+  const file=data.payments[payIdx]&&data.payments[payIdx].files&&data.payments[payIdx].files[fi];
+  if(!file) return;
+  const a=document.createElement('a');
+  a.href=file.data; a.download=file.name; a.target='_blank'; a.click();
+}
+function deleteDO(i){if(confirm('Delete this delivery order?')){data.dos.splice(i,1);save();render();}}
+function deleteLoad(i){if(confirm('Delete?')){data.loads.splice(i,1);save();render();}}
+function deleteCustomer(i){if(confirm('Delete?')){data.customers.splice(i,1);save();render();}}
+function deletePayment(i){if(confirm('Delete?')){data.payments.splice(i,1);save();render();}}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+function closeMBG(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
+
+render();
+
+/* ═══════════ LOAD FILES ═══════════ */
+function fileIcon(name){
+  const ext=(name||'').split('.').pop().toLowerCase();
+  if(['pdf'].includes(ext)) return '📄';
+  if(['jpg','jpeg','png','gif','webp'].includes(ext)) return '🖼️';
+  if(['doc','docx'].includes(ext)) return '📝';
+  if(['xls','xlsx','csv'].includes(ext)) return '📊';
+  return '📎';
+}
+
+function fmtBytes(b){
+  if(b<1024) return b+'B';
+  if(b<1048576) return Math.round(b/1024)+'KB';
+  return (b/1048576).toFixed(1)+'MB';
+}
+
+function searchLoadFiles(q){
+  const el=document.getElementById('files-results');
+  if(!q||q.trim().length<1){
+    el.innerHTML=`<div class="empty" style="padding:48px 20px"><div class="empty-icon">📁</div><div class="empty-text">Search for a load above</div><div class="empty-sub">Type a load ID, container number, or customer name</div></div>`;
+    return;
+  }
+  const term=q.toLowerCase();
+  // Search loads and DOs
+  const matchLoads=data.loads.filter(l=>
+    (l.id&&l.id.toLowerCase().includes(term))||
+    (l.doNum&&l.doNum.toLowerCase().includes(term))||
+    (l.customer&&l.customer.toLowerCase().includes(term))||
+    (l.origin&&l.origin.toLowerCase().includes(term))||
+    (l.dest&&l.dest.toLowerCase().includes(term))
+  );
+  const matchDOs=data.dos.filter(d=>
+    (d.doNum&&d.doNum.toLowerCase().includes(term))||
+    (d.container&&d.container.toLowerCase().includes(term))||
+    (d.customer&&d.customer.toLowerCase().includes(term))
+  );
+
+  if(!matchLoads.length && !matchDOs.length){
+    el.innerHTML=`<div class="empty" style="padding:48px 20px"><div class="empty-icon">🔍</div><div class="empty-text">No results found</div><div class="empty-sub">Try searching by load ID, D.O. number, container, or customer</div></div>`;
+    return;
+  }
+
+  let html='<div class="file-hub">';
+
+  matchLoads.forEach(l=>{
+    const idx=data.loads.indexOf(l);
+    const custData=data.customers.find(c=>c.name===l.customer)||null;
+    const allPayments=data.payments.filter(p=>p.loadId===l.id||p.doNum===l.id||(l.doNum&&(p.doNum===l.doNum||p.loadId===l.doNum)));
+    const payInfo=allPayments.length?allPayments[0]:null;
+    const files=l.files||[];
+    const hasDrivers=l.driverOut||l.driverDel||l.driverIn;
+    html+=`
+    <div class="file-hub-card">
+      <div class="fhc-header">
+        <div class="fhc-header-text">
+          <div class="fhc-title">📦 Load ${l.id}</div>
+          <div class="fhc-sub">${l.origin||'?'} → ${l.dest||'?'} · ${l.customer||'No customer'}</div>
+        </div>
+        <span class="badge ${l.status==='delivered'?'b-green':l.status==='in-transit'?'b-blue':l.status==='cancelled'?'b-gray':'b-amber'}" style="flex-shrink:0">${l.status||'pending'}</span>
+      </div>
+      <div class="fhc-body">
+
+        <div class="section-label-sm">📋 Load info</div>
+        <div class="info-grid">
+          <div class="info-cell"><div class="info-cell-label">Load ID</div><div class="info-cell-value">${l.id}</div></div>
+          <div class="info-cell"><div class="info-cell-label">D.O. Number</div><div class="info-cell-value" style="color:#c4b5fd">${l.doNum||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Date</div><div class="info-cell-value">${l.date||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Rate</div><div class="info-cell-value">${fmt(l.rate||0)}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Origin</div><div class="info-cell-value">${l.origin||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Destination</div><div class="info-cell-value">${l.dest||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Truck</div><div class="info-cell-value">${l.truck||'—'}</div></div>
+          ${Number(l.chassisDays)>0?`<div class="info-cell"><div class="info-cell-label">&#x1F527; Chassis days</div><div class="info-cell-value" style="color:#fbbf24">${l.chassisDays}d${l.chassisCost?' · '+fmt(l.chassisCost):''}</div></div>`:''}
+          ${Number(l.detentionOut)>0?`<div class="info-cell"><div class="info-cell-label">&#x26A0; Out-detention</div><div class="info-cell-value" style="color:#f87171">${l.detentionOut}d${l.detentionOutCost?' · '+fmt(l.detentionOutCost):''}</div></div>`:''}
+          ${Number(l.detentionIn)>0?`<div class="info-cell"><div class="info-cell-label">&#x26A0; In-detention</div><div class="info-cell-value" style="color:#f87171">${l.detentionIn}d${l.detentionInCost?' · '+fmt(l.detentionInCost):''}</div></div>`:''}
+          ${Number(l.detentionDel)>0?`<div class="info-cell"><div class="info-cell-label">&#x26A0; Del-detention</div><div class="info-cell-value" style="color:#f87171">${l.detentionDel}d${l.detentionDelCost?' · '+fmt(l.detentionDelCost):''}</div></div>`:''}
+        </div>
+
+        ${custData?`
+        <div class="section-label-sm">👤 Customer</div>
+        <div class="info-grid">
+          <div class="info-cell"><div class="info-cell-label">Name</div><div class="info-cell-value">${custData.name}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Company</div><div class="info-cell-value">${custData.company||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Phone</div><div class="info-cell-value">${custData.phone||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Email</div><div class="info-cell-value" style="font-size:11px">${custData.email||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Location</div><div class="info-cell-value">${custData.location||'—'}</div></div>
+          ${custData.notes?`<div class="info-cell"><div class="info-cell-label">Notes</div><div class="info-cell-value" style="font-size:11px">${custData.notes}</div></div>`:''}
+        </div>`:''}
+
+        ${hasDrivers?`
+        <div class="section-label-sm">🚚 Driver assignments</div>
+        <div class="driver-row">
+          <div class="driver-cell">
+            <div class="driver-role">Outgate</div>
+            <div class="driver-name">${l.driverOut||'—'}</div>
+            <div class="driver-date">${l.outgateDate||''}</div>
+          </div>
+          <div class="driver-cell">
+            <div class="driver-role">Delivery</div>
+            <div class="driver-name">${l.driverDel||'—'}</div>
+            <div class="driver-date">${l.deliveryDate||''}</div>
+          </div>
+          <div class="driver-cell">
+            <div class="driver-role">In-gate</div>
+            <div class="driver-name">${l.driverIn||'—'}</div>
+            <div class="driver-date">${l.ingateDate||''}</div>
+          </div>
+        </div>`:''}
+
+        <div class="section-label-sm">💰 Payment & invoice</div>
+        ${allPayments.length>0?allPayments.map((payInfo,pi)=>`
+        <div style="background:rgba(16,18,55,0.9);border:1px solid rgba(180,160,255,0.3);border-radius:12px;padding:14px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#fff">${payInfo.invoice||'Invoice'}</div>
+              <div style="font-size:12px;color:rgba(196,181,253,0.6);margin-top:2px">${payInfo.customer||'—'}${payInfo.method?' · '+payInfo.method:''}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:#c4b5fd">${fmt(payInfo.amount||0)}</div>
+              <span class="badge ${payInfo.invoiceStatus==='paid'?'b-green':payInfo.invoiceStatus==='partial'?'b-amber':'b-red'}" style="margin-top:4px;display:inline-block">${payInfo.invoiceStatus||'unpaid'}</span>
+            </div>
+          </div>
+          <div class="info-grid" style="margin-bottom:10px">
+            <div class="info-cell"><div class="info-cell-label">Invoice #</div><div class="info-cell-value">${payInfo.invoice||'—'}</div></div>
+            <div class="info-cell"><div class="info-cell-label">Due date</div><div class="info-cell-value">${payInfo.dueDate||'—'}</div></div>
+            <div class="info-cell"><div class="info-cell-label">Method</div><div class="info-cell-value">${payInfo.method||'—'}</div></div>
+          </div>
+          ${payInfo.notes?`<div style="font-size:12px;color:rgba(196,181,253,0.6);margin-bottom:10px">${payInfo.notes}</div>`:''}
+          ${(payInfo.files&&payInfo.files.length>0)?`
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(167,139,250,0.65);margin-bottom:6px">📎 Invoice files (${payInfo.files.length})</div>
+          ${payInfo.files.map((f,fi)=>`
+          <div class="file-item" style="margin-bottom:6px">
+            <div class="file-icon">${fileIcon(f.name)}</div>
+            <div class="file-info"><div class="file-name">${f.name}</div><div class="file-meta">${fmtBytes(f.size)} · ${f.date}</div></div>
+            <div class="file-actions">
+              <button class="file-btn" onclick="viewPayFileByIdx(${data.payments.indexOf(payInfo)},${fi})">View</button>
+            </div>
+          </div>`).join('')}`:''}
+          <button class="act act-paid ${payInfo.invoiceStatus==='paid'?'active':''}" style="width:100%;justify-content:center;margin-top:4px" onclick="markPaidFromFile(${data.payments.indexOf(payInfo)})">
+            ${payInfo.invoiceStatus==='paid'?'✓ Paid — click to mark unpaid':'Mark as paid'}
+          </button>
+        </div>`).join('')
+        :`<div style="background:rgba(16,18,55,0.85);border:1px dashed rgba(180,160,255,0.3);border-radius:12px;padding:16px;text-align:center;color:rgba(220,210,255,0.7);font-size:13px">
+          No payment linked yet.<br>
+          <span style="font-size:12px">Go to <strong style="color:#c4b5fd">Payments</strong> tab → Add payment → link to Load <strong style="color:#c4b5fd">${l.id}</strong></span>
+        </div>`}
+
+        ${l.notes?`<div style="background:rgba(14,16,50,0.85);border-radius:10px;padding:10px 14px;font-size:13px;color:rgba(220,210,255,0.85);margin-bottom:14px"><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#4a5a7a;display:block;margin-bottom:4px">Notes</span>${l.notes}</div>`:''}
+
+        <div class="section-label-sm">📎 Documents & invoices</div>
+        <div class="upload-zone" onclick="document.getElementById('file-upload-${idx}').click()"
+          ondragover="event.preventDefault();this.classList.add('dragover')"
+          ondragleave="this.classList.remove('dragover')"
+          ondrop="handleFileDrop(event,${idx},'load')">
+          <div class="upload-icon">⬆️</div>
+          <div class="upload-text">Drop files here or click to upload</div>
+          <div class="upload-sub">PDF, images, Word, Excel — any document</div>
+          <input type="file" id="file-upload-${idx}" multiple accept="*/*" onchange="handleFileUpload(this,${idx},'load')">
+        </div>
+        <div class="file-list" id="file-list-load-${idx}">
+          ${files.length===0?`<div style="text-align:center;padding:12px;font-size:13px;color:#4a5a7a">No documents yet</div>`:''}
+          ${files.map((f,fi)=>`
+          <div class="file-item">
+            <div class="file-icon">${fileIcon(f.name)}</div>
+            <div class="file-info">
+              <div class="file-name">${f.name}</div>
+              <div class="file-meta">${fmtBytes(f.size)} · ${f.date}</div>
+            </div>
+            <div class="file-actions">
+              <button class="file-btn" onclick="viewFile(${idx},${fi},'load')">View</button>
+              <button class="file-btn del" onclick="deleteFile(${idx},${fi},'load')">✕</button>
+            </div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  matchDOs.forEach(d=>{
+    const idx=data.dos.indexOf(d);
+    const custData=data.customers.find(c=>c.name===d.customer)||null;
+    const files=d.files||[];
+    const hasDetOut=Number(d.detentionOut)>0;
+    const hasDetIn=Number(d.detentionIn)>0;
+    html+=`
+    <div class="file-hub-card">
+      <div class="fhc-header">
+        <div class="fhc-header-text">
+          <div class="fhc-title">📋 D.O. ${d.doNum}</div>
+          <div class="fhc-sub">Container: ${d.container||'—'} · ${d.customer||'No customer'}</div>
+        </div>
+        <span class="badge ${d.invoicePaid?'b-green':'b-red'}" style="flex-shrink:0">${d.invoicePaid?'Paid':'Unpaid'}</span>
+      </div>
+      <div class="fhc-body">
+
+        <div class="section-label-sm">📋 D.O. info</div>
+        <div class="info-grid">
+          <div class="info-cell"><div class="info-cell-label">Container #</div><div class="info-cell-value">${d.container||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">ERD</div><div class="info-cell-value">${d.erd||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Rate</div><div class="info-cell-value">${fmt(d.rate||0)}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Outgate</div><div class="info-cell-value ${hasDetOut?'alert':''}">${d.outgate||'—'}${hasDetOut?' +'+d.detentionOut+'d det':''}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Delivery</div><div class="info-cell-value ${hasDetIn?'alert':''}">${d.deliveryDate||'—'}${hasDetIn?' +'+d.detentionIn+'d det':''}</div></div>
+          <div class="info-cell"><div class="info-cell-label">In-gate</div><div class="info-cell-value">${d.ingate||'—'}</div></div>
+          ${d.chassisDays?`<div class="info-cell"><div class="info-cell-label">Chassis days</div><div class="info-cell-value">${d.chassisDays}d</div></div>`:''}
+          ${d.storage?`<div class="info-cell"><div class="info-cell-label">Storage</div><div class="info-cell-value" style="color:var(--red-text)">Yes</div></div>`:''}
+          ${d.flip?`<div class="info-cell"><div class="info-cell-label">Flip</div><div class="info-cell-value" style="color:var(--purple-text)">Yes</div></div>`:''}
+        </div>
+
+        ${custData?`
+        <div class="section-label-sm">👤 Customer</div>
+        <div class="info-grid">
+          <div class="info-cell"><div class="info-cell-label">Name</div><div class="info-cell-value">${custData.name}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Company</div><div class="info-cell-value">${custData.company||'—'}</div></div>
+          <div class="info-cell"><div class="info-cell-label">Phone</div><div class="info-cell-value">${custData.phone||'—'}</div></div>
+        </div>`:''}
+
+        <div class="section-label-sm">📎 Documents & invoices</div>
+        <div class="upload-zone" onclick="document.getElementById('file-upload-do-${idx}').click()"
+          ondragover="event.preventDefault();this.classList.add('dragover')"
+          ondragleave="this.classList.remove('dragover')"
+          ondrop="handleFileDrop(event,${idx},'do')">
+          <div class="upload-icon">⬆️</div>
+          <div class="upload-text">Drop files here or click to upload</div>
+          <div class="upload-sub">PDF, images, Word, Excel — any document</div>
+          <input type="file" id="file-upload-do-${idx}" multiple accept="*/*" onchange="handleFileUpload(this,${idx},'do')">
+        </div>
+        <div class="file-list" id="file-list-do-${idx}">
+          ${files.length===0?`<div style="text-align:center;padding:12px;font-size:13px;color:#4a5a7a">No documents yet</div>`:''}
+          ${files.map((f,fi)=>`
+          <div class="file-item">
+            <div class="file-icon">${fileIcon(f.name)}</div>
+            <div class="file-info">
+              <div class="file-name">${f.name}</div>
+              <div class="file-meta">${fmtBytes(f.size)} · ${f.date}</div>
+            </div>
+            <div class="file-actions">
+              <button class="file-btn" onclick="viewFile(${idx},${fi},'do')">View</button>
+              <button class="file-btn del" onclick="deleteFile(${idx},${fi},'do')">✕</button>
+            </div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  html+='</div>';
+  el.innerHTML=html;
+}
+
+function handleFileUpload(input, idx, type){
+  const collection = type==='do' ? data.dos : data.loads;
+  if(!collection[idx].files) collection[idx].files=[];
+  const promises=[];
+  Array.from(input.files).forEach(file=>{
+    promises.push(new Promise(resolve=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        collection[idx].files.push({
+          name:file.name,
+          size:file.size,
+          date:new Date().toLocaleDateString(),
+          type:file.type,
+          data:e.target.result
+        });
+        resolve();
+      };
+      reader.readAsDataURL(file);
+    }));
+  });
+  Promise.all(promises).then(()=>{
+    save();
+    refreshFileList(idx, type);
+  });
+}
+
+function handleFileDrop(event, idx, type){
+  event.preventDefault();
+  event.currentTarget.classList.remove('dragover');
+  const dt=event.dataTransfer;
+  if(!dt||!dt.files.length) return;
+  const fakeInput={files:dt.files};
+  handleFileUpload(fakeInput, idx, type);
+}
+
+function refreshFileList(idx, type){
+  const collection = type==='do' ? data.dos : data.loads;
+  const files = collection[idx].files||[];
+  const el=document.getElementById(`file-list-${type}-${idx}`);
+  if(!el) return;
+  el.innerHTML = files.length===0
+    ? `<div style="text-align:center;padding:12px;font-size:13px;color:#4a5a7a">No documents yet</div>`
+    : files.map((f,fi)=>`
+      <div class="file-item">
+        <div class="file-icon">${fileIcon(f.name)}</div>
+        <div class="file-info">
+          <div class="file-name">${f.name}</div>
+          <div class="file-meta">${fmtBytes(f.size)} · ${f.date}</div>
+        </div>
+        <div class="file-actions">
+          <button class="file-btn" onclick="viewFile(${idx},${fi},'${type}')">View</button>
+          <button class="file-btn del" onclick="deleteFile(${idx},${fi},'${type}')">✕</button>
+        </div>
+      </div>`).join('');
+}
+
+function viewFile(idx, fi, type){
+  const collection = type==='do' ? data.dos : data.loads;
+  const file = collection[idx].files[fi];
+  if(!file) return;
+  const a=document.createElement('a');
+  a.href=file.data;
+  a.download=file.name;
+  a.target='_blank';
+  a.click();
+}
+
+function deleteFile(idx, fi, type){
+  if(!confirm('Remove this file?')) return;
+  const collection = type==='do' ? data.dos : data.loads;
+  collection[idx].files.splice(fi,1);
+  save();
+  refreshFileList(idx, type);
+}
+
+
+function handlePaymentFileUpload(input, idx){
+  if(!data.payments[idx].files) data.payments[idx].files=[];
+  const promises=[];
+  Array.from(input.files).forEach(file=>{
+    promises.push(new Promise(resolve=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        data.payments[idx].files.push({
+          name:file.name,
+          size:file.size,
+          date:new Date().toLocaleDateString(),
+          type:file.type,
+          data:e.target.result
+        });
+        resolve();
+      };
+      reader.readAsDataURL(file);
+    }));
+  });
+  Promise.all(promises).then(()=>{
+    save();
+    refreshPayFileList(idx);
+  });
+}
+
+function refreshPayFileList(idx){
+  const files=data.payments[idx].files||[];
+  const el=document.getElementById('pay-file-list-'+idx);
+  if(!el) return;
+  el.innerHTML = files.length===0
+    ? `<div style="text-align:center;padding:10px;font-size:12px;color:#4a5a7a;background:rgba(5,10,18,0.7);border-radius:8px">No files yet — upload invoices, PODs, or receipts</div>`
+    : files.map((f,fi)=>`
+      <div class="file-item">
+        <div class="file-icon">${fileIcon(f.name)}</div>
+        <div class="file-info">
+          <div class="file-name">${f.name}</div>
+          <div class="file-meta">${fmtBytes(f.size)} · ${f.date}</div>
+        </div>
+        <div class="file-actions">
+          <button class="file-btn" onclick="viewPayFile(${idx},${fi})">View</button>
+          <button class="file-btn del" onclick="deletePayFile(${idx},${fi})">✕</button>
+        </div>
+      </div>`).join('');
+}
+
+function viewPayFile(idx, fi){
+  const file=data.payments[idx].files[fi];
+  if(!file) return;
+  const a=document.createElement('a');
+  a.href=file.data;
+  a.download=file.name;
+  a.target='_blank';
+  a.click();
+}
+
+function deletePayFile(idx, fi){
+  if(!confirm('Remove this file?')) return;
+  data.payments[idx].files.splice(fi,1);
+  save();
+  refreshPayFileList(idx);
+}
+
+
+/* ── LOGIN ── */
+const APP_PASSWORD = 'Palmera2025';
+let _appUnlocked = false;
+
+function doLogin(){
+  const pass = document.getElementById('login-pass').value;
+  const errEl = document.getElementById('login-error');
+  if(pass === APP_PASSWORD){
+    _appUnlocked = true;
+    document.getElementById('login-screen').style.cssText = 'display:none!important';
+    try{ sessionStorage.setItem('crm_auth','1'); }catch(e){}
+    try{ localStorage.setItem('crm_auth_persist','1'); }catch(e){}
+    errEl.style.display='none';
+    render();
+  } else {
+    errEl.style.display='block';
+    document.getElementById('login-pass').value='';
+    document.getElementById('login-pass').focus();
+    const box = document.querySelector('.login-box');
+    box.style.animation='shake 0.4s ease';
+    setTimeout(()=>box.style.animation='',400);
+  }
+}
+
+// Check if already authenticated
+function checkAuth(){
+  let isAuth = false;
+  try{ isAuth = sessionStorage.getItem('crm_auth')==='1'; }catch(e){}
+  if(!isAuth){ try{ isAuth = localStorage.getItem('crm_auth_persist')==='1'; }catch(e){} }
+  if(isAuth || _appUnlocked){
+    const ls = document.getElementById('login-screen');
+    if(ls) ls.style.cssText = 'display:none!important';
+    render();
+  }
+  try{
+    const passEl = document.getElementById('login-pass');
+    if(passEl && !isAuth) passEl.focus();
+  }catch(e){}
+}
+
+window.addEventListener('load', checkAuth);
+document.addEventListener('DOMContentLoaded', checkAuth);
+
+
+</script>
+</body>
+</html>
